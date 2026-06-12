@@ -6,4 +6,5 @@ import icon from 'astro-icon';
 // https://astro.build/config
 export default defineConfig({
   integrations: [icon()]
+  site: 'https://yaga.haus', // O tu enlace de github.io
 });
