@@ -1,52 +1,68 @@
 ---
-// Si tienes un Layout principal, puedes importarlo aquí
-// import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Error 404 | Yagahaus</title>
-  
-  <!-- ¡Aquí está la magia de la redirección! 
-       5 = los segundos a esperar
-       url=/ = hacia dónde lo va a mandar (la raíz) -->
-  <meta http-equiv="refresh" content="5;url=/" />
-  
-  <style>
-    /* Estilos súper básicos por si no usas Tailwind */
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background-color: #000; /* Fondo oscuro tipo ingeniería */
-      color: #fff;
-      font-family: system-ui, sans-serif;
-      text-align: center;
-      margin: 0;
-    }
-    h1 {
-      font-size: 4rem;
-      margin-bottom: 0.5rem;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #a1a1aa; /* Gris claro */
-    }
-  </style>
-</head>
-<body>
-  
-  <h1>Error 404</h1>
-  <p>Página no encontrada, serás redireccionado a la página principal en unos segundos...</p>
+<Layout title="Error 404 | Yagahaus">
+  <main class="error-container">
+    <h1>404</h1>
+    <p>Página no encontrada. Serás redireccionado a la página principal en unos segundos...</p>
 
-  <!-- Opcional: Un botón por si el usuario es impaciente -->
-  <a href="/" style="margin-top: 2rem; color: #ff0055; text-decoration: none;">
-    Volver ahora
-  </a>
+    <a href="/" class="btn-neon">
+      Volver ahora
+    </a>
+  </main>
 
-</body>
-</html>
+  <script>
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 5000);
+  </script>
+</Layout>
+
+<style>
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Usamos calc para restar el alto aproximado de tu menú y que quede bien centrado */
+    min-height: calc(100vh - 100px); 
+    padding: 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 8rem;
+    font-weight: 800;
+    color: var(--color-fresa);
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 500px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: #E2E8F0;
+  }
+
+  .btn-neon {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    padding: 16px 36px;
+    border-radius: 99px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 255, 153, 0.3);
+  }
+</style>
