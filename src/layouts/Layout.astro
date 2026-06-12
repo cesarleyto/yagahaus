@@ -1,0 +1,64 @@
+---
+/* src/layouts/Layout.astro */
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+}
+
+/* Metadatos Dinámicos por defecto */
+const { 
+    title = "yagahaus | Estudio Boutique de Posicionamiento Digital", 
+    description = "Construcción de ecosistemas web headless, smart links y estrategias de posicionamiento a la medida para profesionistas, figuras públicas y artistas." 
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />        <meta name="generator" content={Astro.generator} />
+
+        <!-- SEO Principal -->
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content="posicionamiento digital, estudio boutique, desarrollo web headless, smart links, marketing para artistas, ecosistemas digitales" />
+        <meta name="author" content="yagahaus" />
+
+        <!-- Open Graph (WhatsApp, Facebook, LinkedIn) -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://yaga.haus/" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <!-- Aquí luego pondremos la ruta a la imagen oficial de Yagahaus -->
+        <meta property="og:image" content="/og-image.jpg" /> 
+
+        <!-- Twitter Card -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://yaga.haus/" />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content="/og-image.jpg" />
+    </head>
+    
+    <body style="display: flex; flex-direction: column; min-height: 100vh;">
+        <!-- Navegador Flotante -->
+        <Header />
+        
+        <!-- Contenedor Principal (Aquí se inyecta cada página) -->
+        <!-- Se agrega padding-top para que el Header flotante no tape el contenido -->
+        <main style="flex: 1; padding-top: 120px;">
+            <slot />
+        </main>
+
+        <!-- Pie de página -->
+        <Footer />
+    </body>
+</html>

@@ -1,0 +1,95 @@
+---
+/* src/pages/contacto.astro */
+import Layout from '../layouts/Layout.astro';
+import ContactoForm from '../components/ContactoForm.astro';
+import HeroMini from '../components/HeroMini.astro';
+---
+
+<Layout title="Contacto | yagahaus">
+  
+  <section class="contacto-container">
+    
+    <!-- CABECERA -->
+    <header class="contacto-header">
+      <h1 class="page-title">Hablemos de tu <span class="highlight-bold">proyecto.</span></h1>
+      <p class="page-subtitle">
+        Cuéntanos qué necesitas y evaluaremos cómo nuestra infraestructura y dirección creativa pueden llevar tu marca al siguiente nivel. Sé lo más específico posible.
+      </p>
+    </header>
+
+    <!-- COMPONENTE DE FORMULARIO -->
+    <div class="form-wrapper">
+      <ContactoForm />
+    </div>
+
+  </section>
+
+  <!-- COMPONENTE HERO MINI (Fuera del contenedor con padding) -->
+  <div class="minihero-wrapper">
+    <HeroMini />
+  </div>
+
+</Layout>
+
+<style>
+  .contacto-container { 
+    background-color: var(--color-bg); 
+    margin-top: -120px; 
+    /* El padding lateral del 5% era lo que aplastaba al componente */
+    padding: 145px 5% 4rem 5%; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    box-sizing: border-box; 
+    min-height: calc(100vh - 200px); /* Ajuste menor para compensar el espacio que ahora toma HeroMini */
+  }
+
+  .contacto-header { 
+    width: 100%; 
+    max-width: 800px; 
+    text-align: center; 
+    margin-bottom: 3.5rem; 
+  }
+
+  .page-title { 
+    font-size: 3.5rem; 
+    font-weight: 300; 
+    line-height: 1.1; 
+    color: var(--color-text); 
+    margin: 0 0 1rem 0; 
+  }
+
+  .highlight-bold { 
+    font-weight: 800; 
+    color: var(--color-accent); 
+  }
+
+  .page-subtitle { 
+    font-size: 1.15rem; 
+    font-weight: 300; 
+    color: #aaaaaa; 
+    line-height: 1.6; 
+    margin: 0; 
+  }
+
+  .form-wrapper { 
+    width: 100%; 
+    max-width: 700px; 
+    background: rgba(255, 255, 255, 0.02); 
+    padding: 3rem; 
+    border-radius: 30px; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 2rem;
+  }
+  
+  .minihero-wrapper {
+    width: 100%;
+    /* Quitamos cualquier restricción o margen que lo centre artificialmente */
+    display: block; 
+  }
+
+  @media (max-width: 850px) {
+    .page-title { font-size: 2.5rem; }
+    .form-wrapper { padding: 2rem; }
+  }
+</style>

@@ -1,0 +1,200 @@
+---
+/* src/pages/blog/[slug].astro */
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Porque from '../../components/Porque.astro'; 
+
+// 1. Astro busca todos los artículos y genera las URLs dinámicas (slugs)
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog');
+  return blogEntries.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry }, 
+  }));
+}
+
+// 2. Extraemos el artículo específico que el usuario está visitando
+const { entry } = Astro.props;
+
+// 3. Renderizamos el cuerpo de texto de Markdown a HTML (Método actualizado)
+const { Content } = await render(entry);
+---
+
+<Layout title={`${entry.data.title} | yagahaus`}>
+  
+  <article class="post-container">
+    
+    <header class="post-header">
+      {entry.data.category && (
+        <span class="category-badge">{entry.data.category}</span>
+      )}
+      <h1 class="post-title">{entry.data.title}</h1>
+      <p class="post-date">
+        {entry.data.date.toLocaleDateString('es-MX', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        })}
+      </p>
+    </header>
+
+    {entry.data.image && (
+      <div class="post-hero-image">
+        <img src={entry.data.image} alt={entry.data.title} />
+      </div>
+    )}
+
+    <div class="post-content">
+      <Content />
+    </div>
+
+  </article>
+
+  <Porque /> 
+
+</Layout>
+
+<style>
+  /* --- CONTENEDOR PRINCIPAL --- */
+  .post-container {
+    background-color: var(--color-bg); 
+    margin-top: -120px; /* Anula el empuje del Layout maestro */
+    padding: 125px 5% 4rem 5%; /* <-- Reducido de 160px a 125px para subir más el texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80vh;
+    box-sizing: border-box; 
+  }
+
+  /* --- CABECERA --- */
+  .post-header {
+    width: 100%;
+    max-width: 800px; 
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .category-badge {
+    display: inline-block;
+    background-color: var(--color-accent); 
+    color: var(--color-bg);
+    padding: 8px 16px;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #FFFFFF;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .post-date {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #aaaaaa;
+    margin: 0;
+  }
+
+  /* --- IMAGEN DE PORTADA --- */
+  .post-hero-image {
+    width: 100%;
+    max-width: 1000px;
+    aspect-ratio: 21 / 9; 
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 4rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  }
+
+  .post-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* --- ESTILOS DEL CONTENIDO MARKDOWN --- */
+  .post-content {
+    width: 100%;
+    max-width: 750px; 
+    color: var(--color-text); 
+    font-size: 1.15rem;
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .post-content :global(h2) {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-accent); 
+    margin: 3rem 0 1.5rem 0;
+    line-height: 1.2;
+  }
+
+  .post-content :global(h3) {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #FFFFFF;
+    margin: 2rem 0 1rem 0;
+  }
+
+  .post-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content :global(img) {
+    width: 100%;
+    border-radius: 15px;
+    margin: 2rem 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .post-content :global(blockquote) {
+    border-left: 4px solid var(--color-accent);
+    background-color: rgba(24, 30, 21, 0.5);
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    border-radius: 0 15px 15px 0;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: #FFFFFF;
+  }
+
+  .post-content :global(a) {
+    color: var(--color-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-accent);
+    transition: opacity 0.3s;
+  }
+
+  .post-content :global(a:hover) {
+    opacity: 0.7;
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 850px) {
+    .post-container {
+      padding-top: 110px; /* <-- Reducido de 130px a 110px para pegarlo más al ícono en móviles */
+    }
+    .post-title {
+      font-size: 2.2rem;
+    }
+    .post-hero-image {
+      aspect-ratio: 16 / 9;
+      border-radius: 20px;
+    }
+    .post-content {
+      font-size: 1.05rem;
+    }
+    .post-content :global(h2) {
+      font-size: 1.8rem;
+    }
+  }
+</style>

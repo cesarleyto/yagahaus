@@ -1,0 +1,167 @@
+---
+/* src/components/ContactoForm.astro */
+---
+
+<!-- CONTENEDOR DEL MENSAJE DE ÉXITO (Oculto por defecto) -->
+<div id="successMessage" class="success-message" style="display: none;">
+  <div class="success-icon">✨</div>
+  <h3>¡Formulario enviado con éxito!</h3>
+  <p>Gracias por compartirnos tu visión. Analizaremos la información y nos pondremos en contacto contigo lo antes posible para darle seguimiento a tu proyecto.</p>
+</div>
+
+<!-- FORMULARIO -->
+<form id="contactForm" class="contact-form">
+  
+  <!-- SECCIÓN 1: IDENTIDAD -->
+  <div class="form-group">
+    <label for="proyecto">Nombre del proyecto<span class="required-star">*</span></label>
+    <input type="text" id="proyecto" name="proyecto" required placeholder="Nombre del negocio, empresa, nombre artístico y/o marca personal" />
+  </div>
+
+  <div class="form-group">
+    <label for="nombre">Nombre completo <span class="required-star">*</span></label>
+    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email <span class="required-star">*</span></label>
+    <input type="email" id="email" name="email" required placeholder="correo@ejemplo.com" />
+  </div>
+
+  <div class="form-group">
+    <label for="telefono">WhatsApp / Teléfono <span class="required-star">*</span></label>
+    <input type="tel" id="telefono" name="telefono" required placeholder="Tu número" />
+  </div>
+
+  <div class="form-group">
+    <!-- Cambiamos type="url" por type="text" para evitar restricciones -->
+    <label for="web">Sitio web actual</label>
+    <input type="text" id="web" name="web" placeholder="Deja en blanco si no tienes" />
+  </div>
+
+  <div class="form-group">
+    <label for="redes">Redes sociales existentes</label>
+    <input type="text" id="redes" name="redes" placeholder="instagram.com/usuario, facebook.com/usuario, tiktok.com/@usuario" />
+  </div>
+
+  <!-- SECCIÓN 2: DIAGNÓSTICO -->
+  <div class="form-group">
+    <label>¿Cuentas con sitio web actualmente? <span class="required-star">*</span></label>
+    <div class="radio-group">
+      <label><input type="radio" name="web-status" value="no" required /> No, empiezo desde cero.</label>
+      <label><input type="radio" name="web-status" value="mal" /> Sí, pero no funciona o necesita renovación.</label>
+      <label><input type="radio" name="web-status" value="bien" /> Sí, funciona bien, solo necesito ayuda con mis contenidos.</label>
+    </div>
+  </div>
+
+  <!-- SECCIÓN 3: VISIÓN -->
+  <div class="form-group">
+    <label for="objetivo">¿Cuál es tu objetivo principal? <span class="required-star">*</span></label>
+    <textarea id="objetivo" name="objetivo" rows="3" required placeholder="Ej. Agendar citas, incrementar ventas, mejorar posicionamiento, etc."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="vision">¿Qué visión a futuro tienes? ¿A dónde quieres llegar en 6 meses o 1 año? <span class="required-star">*</span></label>
+    <textarea id="vision" name="vision" rows="4" required placeholder="Cuéntanos tus metas a mediano y largo plazo..."></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="referencias">¿Tienes alguna referencia o sitio web de tu competencia?</label>
+    <textarea id="referencias" name="referencias" rows="3" placeholder="Enlaces que te inspiren o competencia directa"></textarea>
+  </div>
+
+  <button type="submit" class="btn-primary" id="submitBtn">Enviar formulario</button>
+</form>
+
+<style>
+  :root { --color-fresa: #E91E63; }
+  
+  .contact-form { display: flex; flex-direction: column; gap: 1.5rem; max-width: 700px; margin: 0 auto; width: 100%; }
+  .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  label { font-weight: 600; color: #fff; font-size: 1rem; }
+  .required-star { color: var(--color-fresa); font-weight: 800; }
+  input, textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1rem; color: #fff; font-size: 1rem; width: 100%; box-sizing: border-box; }
+  input:focus, textarea:focus { border-color: var(--color-accent); outline: none; }
+  
+  .radio-group { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }
+  .radio-group label { font-weight: 400; font-size: 0.95rem; cursor: pointer; }
+  
+  .btn-primary { background: var(--color-accent); color: var(--color-bg); padding: 16px 36px; border-radius: 99px; border: none; font-weight: 800; font-size: 1rem; cursor: pointer; align-self: center; transition: transform 0.3s ease; }
+  .btn-primary:hover { transform: translateY(-3px); }
+  .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+
+  /* ESTILOS DEL MENSAJE DE ÉXITO */
+  .success-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  .success-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  .success-message h3 {
+    color: var(--color-accent);
+    font-size: 1.8rem;
+    margin: 0 0 1rem 0;
+  }
+  .success-message p {
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement;
+  const submitBtn = document.getElementById('submitBtn') as HTMLButtonElement;
+  const successMessage = document.getElementById('successMessage') as HTMLElement;
+  
+  // Tu URL de Google Sheets
+  const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyY_Gt0OUxBMDpKgMGZOvkzQOIVaicMYX430h7KyBPeTv46Pqn4hdVOoMNxAasEj9KE/exec';
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Cambiar estado del botón
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = 'Enviando...';
+    submitBtn.disabled = true;
+
+    const formData = new FormData(form);
+    
+    try {
+      // Petición directa a Google con 'no-cors'
+      await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      });
+
+      // OCULTAR FORMULARIO Y MOSTRAR MENSAJE DE ÉXITO
+      form.style.display = 'none';
+      successMessage.style.display = 'flex';
+      
+    } catch (error) {
+      alert("Error de conexión. Revisa tu internet e intenta de nuevo.");
+      // Restaurar botón solo si hay error
+      submitBtn.innerText = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+</script>

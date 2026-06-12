@@ -1,0 +1,311 @@
+---
+/* src/pages/blog/index.astro */
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/Hero.astro'; // Asegúrate de que el nombre coincida con tu archivo
+
+// 1. Obtenemos todos los artículos de la carpeta src/content/blog
+const posts = await getCollection('blog');
+
+// 2. Los ordenamos por fecha (del más reciente al más antiguo)
+const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+// 3. Extraemos las categorías únicas para el Dashboard
+const categories = [...new Set(sortedPosts.map((post) => post.data.category).filter(Boolean))];
+---
+
+<Layout title="Blog | yagahaus">
+  
+  <section class="blog-index-container">
+    
+    <!-- CABECERA HOMOGENEIZADA -->
+    <header class="blog-header">
+      <h1 class="page-title">Tips de <span class="highlight-bold">posicionamiento.</span></h1>
+      <p class="page-subtitle">
+        Estrategias, análisis y tácticas probadas para dominar el algoritmo, escalar tu audiencia y convertir seguidores en clientes fieles.
+      </p>
+    </header>
+
+    <!-- DASHBOARD DE CATEGORÍAS -->
+    <div class="category-dash">
+      <button class="cat-btn active" data-cat="all">Todos</button>
+      {categories.map((cat) => (
+        <button class="cat-btn" data-cat={cat}>{cat}</button>
+      ))}
+    </div>
+
+    <!-- GRID DINÁMICO DE ARTÍCULOS -->
+    <div class="blog-grid" id="blogGrid">
+      {sortedPosts.map((post) => (
+        <a href={`/blog/${post.id}`} class="blog-card" data-category={post.data.category}>
+          <div class="card-image-wrapper">
+            {post.data.image ? (
+              <img src={post.data.image} alt={post.data.title} class="card-img" />
+            ) : (
+              <div class="img-placeholder"></div>
+            )}
+            <!-- Etiqueta de Categoría (Píldora Fresa) -->
+            {post.data.category && (
+              <span class="category-badge">{post.data.category}</span>
+            )}
+          </div>
+          
+          <div class="card-content">
+            <h3>{post.data.title}</h3>
+            <p>{post.data.description}</p>
+            <span class="link-more">Leer artículo &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </section>
+
+  <!-- Remate visual: Componente Hero fuera del contenedor para que ocupe el 100% -->
+  <div class="minihero-wrapper">
+    <Hero />
+  </div>
+
+</Layout>
+
+<style>
+  :root {
+    --color-fresa: #E91E63;
+  }
+
+  /* --- CONTENEDOR PRINCIPAL (Igual a Precios y Contacto) --- */
+  .blog-index-container {
+    background-color: var(--color-bg);
+    margin-top: -120px;
+    padding: 145px 5% 4rem 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* --- CABECERA --- */
+  .blog-header {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .page-title {
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--color-text);
+    margin: 0 0 1rem 0;
+  }
+
+  .highlight-bold {
+    font-weight: 800;
+    color: var(--color-accent);
+  }
+
+  .page-subtitle {
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: #aaaaaa;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* --- DASHBOARD DE CATEGORÍAS --- */
+  .category-dash {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  .cat-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    padding: 10px 24px;
+    border-radius: 99px;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cat-btn:hover {
+    border-color: var(--color-accent);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .cat-btn.active {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    font-weight: 800;
+    border-color: var(--color-accent);
+  }
+
+  /* --- GRID DINÁMICO DE ARTÍCULOS --- */
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 4rem;
+  }
+
+  /* --- ESTILOS DE LA TARJETA (Estilo Precios) --- */
+  .blog-card {
+    background-color: var(--color-bg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-accent);
+    box-shadow: 0 15px 40px rgba(0, 255, 153, 0.15);
+  }
+
+  /* --- IMAGEN Y CATEGORÍA --- */
+  .card-image-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .blog-card:hover .card-img {
+    transform: scale(1.05);
+  }
+
+  .img-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .category-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--color-fresa); /* Modificado a Fresa */
+    color: #fff; /* Texto blanco para resaltar sobre el fresa */
+    padding: 6px 14px;
+    border-radius: 99px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 2;
+  }
+
+  /* --- CONTENIDO DE LA TARJETA --- */
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .card-content h3 {
+    color: var(--color-text);
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    line-height: 1.3;
+    transition: color 0.3s ease;
+  }
+
+  .blog-card:hover .card-content h3 {
+    color: var(--color-accent);
+  }
+
+  .card-content p {
+    color: #888888;
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin: 0 0 1.5rem 0;
+    flex-grow: 1;
+  }
+
+  /* --- ENLACE FINAL --- */
+  .link-more {
+    align-self: flex-start;
+    color: var(--color-accent);
+    font-weight: 700;
+    font-size: 1rem;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .blog-card:hover .link-more {
+    border-bottom-color: var(--color-accent);
+  }
+  
+  .minihero-wrapper {
+    width: 100%;
+    display: block; 
+  }
+
+  /* --- RESPONSIVE --- */
+  @media (max-width: 1024px) {
+    .blog-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 850px) {
+    .page-title { font-size: 2.5rem; }
+  }
+
+  @media (max-width: 650px) {
+    .blog-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // Lógica para el filtrado del Dashboard de Categorías
+  const buttons = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.blog-card');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remover clase activa de todos los botones
+      buttons.forEach(b => b.classList.remove('active'));
+      // Agregar clase activa al botón clickeado
+      btn.classList.add('active');
+
+      const targetCat = btn.getAttribute('data-cat');
+
+      cards.forEach(card => {
+        const cardElem = card as HTMLElement;
+        if (targetCat === 'all' || cardElem.getAttribute('data-category') === targetCat) {
+          cardElem.style.display = 'flex';
+        } else {
+          cardElem.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

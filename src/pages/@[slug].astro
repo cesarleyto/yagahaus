@@ -1,0 +1,271 @@
+---
+import { getCollection } from 'astro:content';
+import Biolinks from '../layouts/Biolinks.astro'; 
+// 1. IMPORTAMOS EL MOTOR DE ÍCONOS
+import { Icon } from 'astro-icon/components'; 
+
+export async function getStaticPaths() {
+  const links = await getCollection('biolinks');
+  return links.map(link => ({
+    params: { slug: link.id }, 
+    props: { link },
+  }));
+}
+
+const { link } = Astro.props;
+const { data } = link;
+
+// Variables extraídas para inyectar en el CSS
+const bg = data.colorFondo;
+const acento = data.colorAcento;
+const texto = data.colorTexto;
+---
+
+<Biolinks title={`${data.title} | yagahaus`}>
+  
+  {data.pixel_meta && (
+    <Fragment slot="head">
+      <meta name="facebook-pixel-id" content={data.pixel_meta} />
+    </Fragment>
+  )}
+
+  <main class="biolink-container" style={`--link-bg: ${bg}; --link-accent: ${acento}; --link-text: ${texto};`}>
+    
+    {data.avatar && (
+      <div class="biolink-bg-wrapper">
+        <img src={data.avatar} alt="Background" class="biolink-bg-image" />
+        <div class="biolink-bg-overlay"></div>
+      </div>
+    )}
+
+    <div class="biolink-content">
+      
+      {data.avatar && (
+        <img src={data.avatar} alt={data.title} class="biolink-avatar" />
+      )}
+
+      <h1 class="biolink-title">{data.title}</h1>
+      {data.descripcion && <p class="biolink-desc">{data.descripcion}</p>}
+
+      <!-- 2. AQUÍ SUCEDE LA MAGIA DE LOS ÍCONOS -->
+      {data.enlaces && data.enlaces.length > 0 && (
+        <div class="links-wrapper">
+          {data.enlaces.map((item) => {
+            // Lógica: Si hay uno personalizado, lo usa. Si no, revisa el predefinido.
+            const iconoFinal = item.icono_personalizado || (item.icono_predefinido !== 'ninguno' ? item.icono_predefinido : null);
+            
+            return (
+              <a href={item.url} target="_blank" rel="noopener noreferrer" class="link-btn">
+                {/* Si la variable iconoFinal tiene algo, renderiza el SVG */}
+                {iconoFinal && <Icon name={iconoFinal} class="btn-icon" />}
+                <span>{item.titulo}</span>
+              </a>
+            );
+          })}
+        </div>
+      )}
+
+      {data.script_google && (
+        <div class="newsletter-box">
+          <p>{data.texto_newsletter || "Suscríbete a nuestra lista"}</p>
+          <form class="mini-form" action={data.script_google} method="POST">
+            <input type="email" name="email" placeholder="Tu correo electrónico" required />
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      )}
+
+    </div>
+    
+    <a href="/" class="watermark">powered by yagahaus</a>
+
+  </main>
+</Biolinks>
+
+<style>
+  .biolink-container {
+    background-color: var(--link-bg); 
+    color: var(--link-text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 5% 2rem 5%;
+    font-family: system-ui, -apple-system, sans-serif;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden; 
+  }
+
+  .biolink-bg-wrapper {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0; 
+    overflow: hidden;
+  }
+
+  .biolink-bg-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    filter: blur(40px) saturate(1.5); 
+    transform: scale(1.1); 
+  }
+
+  .biolink-bg-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: color-mix(in srgb, var(--link-bg) 80%, transparent);
+  }
+
+  .biolink-content {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    flex-grow: 1;
+    position: relative;
+    z-index: 1; 
+  }
+
+  .biolink-avatar {
+    width: 85%; 
+    max-width: 380px; 
+    aspect-ratio: 1 / 1; 
+    object-fit: cover;
+    border-radius: 16px; 
+    margin-bottom: 0.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4); 
+  }
+
+  .biolink-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0;
+    text-shadow: 0 2px 10px color-mix(in srgb, var(--link-text) 30%, transparent);
+  }
+
+  .biolink-desc {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+  }
+
+  .links-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  /* 3. CSS ACTUALIZADO PARA LOS BOTONES Y EL ÍCONO */
+  .link-btn {
+    display: flex;              /* Flexbox para alinear ícono y texto */
+    justify-content: center;    /* Centra todo horizontalmente */
+    align-items: center;        /* Centra todo verticalmente */
+    gap: 0.8rem;                /* Espacio entre el ícono y el texto */
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: var(--link-accent); 
+    color: #ffffff; 
+    border: 1px solid var(--link-accent);
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 15px color-mix(in srgb, var(--link-accent) 40%, transparent);
+  }
+
+  .link-btn:hover {
+    background-color: color-mix(in srgb, var(--link-text) 5%, transparent);
+    color: var(--link-text); 
+    border-color: color-mix(in srgb, var(--link-text) 20%, transparent);
+    transform: translateY(-2px);
+    box-shadow: none;
+  }
+
+  /* Clase específica para controlar el tamaño del ícono SVG */
+  .btn-icon {
+    font-size: 1.5rem;
+    /* Al no tener 'fill' o 'color' explícito aquí, hereda el color del texto del botón automáticamente */
+  }
+
+  .newsletter-box {
+    width: 100%;
+    margin-top: 2rem;
+    background: color-mix(in srgb, var(--link-text) 8%, transparent);
+    padding: 1.5rem;
+    border-radius: 15px;
+    border: 1px solid color-mix(in srgb, var(--link-text) 15%, transparent);
+    box-sizing: border-box;
+    backdrop-filter: blur(10px);
+  }
+
+  .newsletter-box p {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .mini-form {
+    display: flex;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .mini-form input {
+    flex-grow: 1;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--link-text) 20%, transparent);
+    background: color-mix(in srgb, var(--link-text) 5%, transparent);
+    color: var(--link-text);
+    box-sizing: border-box;
+  }
+
+  .mini-form input::placeholder {
+    color: color-mix(in srgb, var(--link-text) 50%, transparent);
+  }
+
+  .mini-form button {
+    background-color: var(--link-accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0 1.5rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .mini-form button:hover {
+    transform: scale(1.05);
+  }
+
+  .watermark {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    color: var(--link-text);
+    opacity: 0.4;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .watermark:hover {
+    opacity: 0.8;
+  }
+</style>

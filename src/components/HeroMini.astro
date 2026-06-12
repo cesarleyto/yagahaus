@@ -1,0 +1,156 @@
+---
+/* src/components/HeroMini.astro */
+---
+
+<section class="mini-hero-container">
+  
+  <div class="mini-background-wrapper">
+    <img src="/assets/images/1.jpeg" alt="Estrategia para marcas" class="mini-img active" id="mini-img-1" />
+    <img src="/assets/images/2.jpeg" alt="Estrategia para figuras públicas" class="mini-img" id="mini-img-2" />
+    <img src="/assets/images/3.jpeg" alt="Estrategia para artistas" class="mini-img" id="mini-img-3" />
+  </div>
+
+  <div class="mini-content-overlay">
+    <h2 class="mini-title">Posicionamiento digital para</h2>
+    
+    <div class="mini-ticker-wrapper">
+      <div class="mini-ticker-track">
+        <div class="mini-ticker-item">marcas personales</div>
+        <div class="mini-ticker-item">figuras públicas</div>
+        <div class="mini-ticker-item">artistas</div>
+        <div class="mini-ticker-item">profesionistas</div>
+        <div class="mini-ticker-item">marcas personales</div>
+        <div class="mini-ticker-item">figuras públicas</div>
+        <div class="mini-ticker-item">artistas</div>
+        <div class="mini-ticker-item">profesionistas</div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<style>
+  /* --- CONTENEDOR COMPACTO (MEDIA PANTALLA) --- */
+  .mini-hero-container {
+    position: relative;
+    width: 100%;
+    height: 45vh; /* Ocupa menos de la mitad de la pantalla */
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-bg); /* Negro de la paleta */
+  }
+
+  /* --- IMÁGENES DE FONDO DE INTERFAZ --- */
+  .mini-background-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    /* Efecto de degradado arriba y abajo para fundirse con el fondo de la página */
+    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  }
+
+  .mini-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+
+  .mini-img.active {
+    opacity: 0.2; /* Opacidad baja para dar un look sutil y priorizar el texto */
+  }
+
+  /* --- CONTENIDO TOTALMENTE CENTRADO --- */
+  .mini-content-overlay {
+    position: relative;
+    z-index: 10; /* Por encima del carrusel fantasma */
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mini-title {
+    color: #FFFFFF; /* Blanco Puro */
+    font-size: 1.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin: 0 0 1.5rem 0;
+    padding: 0 20px;
+    line-height: 1.2;
+  }
+
+  /* --- BANDA DE TEXTO EN MOVIMIENTO (TICKER) --- */
+  .mini-ticker-wrapper {
+    width: 100vw;
+    overflow: hidden;
+    transform: rotate(-1.5deg); /* Inclinación más sutil por la altura compacta */
+    /* Desvanecido en los extremos izquierdo y derecho */
+    mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%);
+  }
+
+  .mini-ticker-track {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scrollMiniTicker 14s linear infinite; /* Ritmo fluido */
+  }
+
+  .mini-ticker-item {
+    display: inline-block;
+    font-size: 3.8rem;
+    font-weight: 800;
+    color: var(--color-fresa); /* Fresa vibrante */
+    text-transform: uppercase;
+    padding-right: 4rem;
+  }
+
+  @keyframes scrollMiniTicker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* --- 📱 OPTIMIZACIÓN MÓVIL --- */
+  @media (max-width: 768px) {
+    .mini-hero-container {
+      height: 35vh;
+    }
+    
+    .mini-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    .mini-ticker-item {
+      font-size: 2.2rem;
+      padding-right: 2rem;
+    }
+  }
+</style>
+
+<script>
+  // Lógica de transición de imágenes del Hero compacto
+  const totalMiniImages = 3;
+  let currentMiniIndex = 1;
+
+  setInterval(() => {
+    const currentImg = document.getElementById(`mini-img-${currentMiniIndex}`);
+    if (currentImg) currentImg.classList.remove('active');
+
+    currentMiniIndex = currentMiniIndex === totalMiniImages ? 1 : currentMiniIndex + 1;
+
+    const nextImg = document.getElementById(`mini-img-${currentMiniIndex}`);
+    if (nextImg) nextImg.classList.add('active');
+  }, 3200); // Pequeño desfase de tiempo para ritmo visual
+</script>

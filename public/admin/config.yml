@@ -1,0 +1,84 @@
+# public/admin/config.yml
+
+backend:
+  name: github
+  repo: cesarleyto/yagahaus 
+  branch: main 
+
+media_folder: "public/assets/images/blog"
+public_folder: "/assets/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Artículos del Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Fecha de Publicación", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "Categoría del Artículo"
+        name: "category"
+        widget: "select"
+        options:
+          - "Marca Personal"
+          - "Profesionistas"
+          - "Artistas"
+          - "Figuras Públicas"
+          - "Desarrollo Web"
+          - "Posicionamiento Digital"
+      - { label: "Descripción Corta (SEO)", name: "description", widget: "text" }
+      - { label: "Imagen de Portada", name: "image", widget: "image", required: false }
+      - { label: "Cuerpo del Artículo", name: "body", widget: "markdown" }
+
+  # --- NUEVA COLECCIÓN BIOLINKS ---
+  - name: "biolinks"
+    label: "Biolinks"
+    folder: "src/content/biolinks"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "URL Corta (Slug)", name: "slug", widget: "string", hint: "Ejemplo: 'vales-mil' (sin espacios ni caracteres raros)" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Tema", name: "tema", widget: "select", options: ["oscuro", "claro"] }
+      - { label: "Color Fondo", name: "colorFondo", widget: "color", required: false }
+      - { label: "Color Acento", name: "colorAcento", widget: "color", required: false }
+      - { label: "Color Texto", name: "colorTexto", widget: "color", required: false }
+      - { label: "Avatar", name: "avatar", widget: "image", required: false }
+      - { label: "Descripción", name: "descripcion", widget: "text", required: false }
+      - { label: "Pixel Facebook", name: "pixel_meta", widget: "string", required: false }
+      - { label: "Script Google (Form)", name: "script_google", widget: "string", required: false }
+      - { label: "Texto Newsletter", name: "texto_newsletter", widget: "string", required: false }
+      - name: "enlaces"
+        label: "Enlaces"
+        widget: "list"
+        fields:
+          - { label: "Título del botón", name: "titulo", widget: "string" }
+          - { label: "URL", name: "url", widget: "string" }
+          - label: "Ícono Predefinido"
+            name: "icono_predefinido"
+            widget: "select"
+            required: false
+            options:
+              - { label: "Ninguno", value: "ninguno" }
+              - { label: "Spotify", value: "simple-icons:spotify" }
+              - { label: "Apple Music", value: "simple-icons:applemusic" }
+              - { label: "YouTube", value: "simple-icons:youtube" }
+              - { label: "SoundCloud", value: "simple-icons:soundcloud" }
+              - { label: "Instagram", value: "simple-icons:instagram" }
+              - { label: "TikTok", value: "simple-icons:tiktok" }
+              - { label: "Facebook", value: "simple-icons:facebook" }
+              - { label: "X (Twitter)", value: "simple-icons:x" }
+              - { label: "Telegram", value: "simple-icons:telegram" }
+              - { label: "WhatsApp", value: "simple-icons:whatsapp" }
+              - { label: "Amazon", value: "simple-icons:amazon" }
+              - { label: "Amazon Music", value: "simple-icons:amazonmusic" }
+              - { label: "Mercado Pago", value: "simple-icons:mercadopago" }
+              - { label: "YouTube Music", value: "simple-icons:youtubemusic" }
+              - { label: "Globe (Web)", value: "lucide:globe" }
+              - { label: "Link (Enlace)", value: "lucide:link" }
+              - { label: "Map (Ubicación)", value: "lucide:map-pin" }
+              - { label: "Phone (Teléfono)", value: "lucide:phone" }
+              - { label: "Shopping Cart", value: "lucide:shopping-cart" }
+              - { label: "Shopping Bag", value: "lucide:shopping-bag" }
+          - { label: "Ícono Personalizado", name: "icono_personalizado", widget: "string", required: false }

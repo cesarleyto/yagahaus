@@ -1,0 +1,35 @@
+/* src/styles/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+:root {
+  /* Paleta de Colores YAGAHAUS */
+  --color-bg: #181E15;       /* Negro cálido */
+  --color-text: #FFFFFF;     /* Blanco */
+  --color-accent: #00FF99;   /* Verde Neón */
+  --color-fresa: #FF0066;    /* Fresa */
+  --color-azul: #0033FF;     /* Azul */
+  
+  /* Tipografía */
+  --font-base: 'Poppins', sans-serif;
+}
+
+html {
+  font-family: var(--font-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Clases de utilidad rápida para cuando no quieras escribir CSS extra */
+.text-accent { color: var(--color-accent); }
+.bg-accent { background-color: var(--color-accent); }
+.text-fresa { color: var(--color-fresa); }
+.text-azul { color: var(--color-azul); }

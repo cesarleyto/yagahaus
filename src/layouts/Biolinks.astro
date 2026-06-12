@@ -1,0 +1,73 @@
+---
+/* src/layouts/Biolinks.astro */
+import '../styles/global.css';
+
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string; // Añadimos imagen para que cada link pueda tener su propia portada en WhatsApp
+}
+
+/* Metadatos Dinámicos por defecto enfocados en Smart Links */
+const { 
+    title = "Enlace Inteligente | yagahaus", 
+    description = "Accede a nuestros enlaces oficiales, lanzamientos y contenido exclusivo en un solo lugar.",
+    image = "/og-image.jpg" // Imagen por defecto si el cliente no sube una
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <meta name="generator" content={Astro.generator} />
+
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content="smart links, enlace inteligente, presave, link in bio, ecosistema digital, shortlink, yagahaus" />
+        <meta name="author" content="yagahaus" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={image} /> 
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={image} />
+
+        <style>
+            /* EL FIX DEL CENTRADO MÓVIL:
+              Esto resetea los márgenes, prohíbe el desbordamiento horizontal 
+              y obliga a que el padding se calcule hacia adentro (border-box).
+            */
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100vw;
+                overflow-x: hidden;
+                box-sizing: border-box;
+            }
+            *, *::before, *::after {
+                box-sizing: inherit;
+            }
+        </style>
+    </head>
+    
+    <body style="display: flex; flex-direction: column; min-height: 100vh;">
+        
+        <main style="flex: 1; display: flex; flex-direction: column; width: 100%;">
+            <slot />
+        </main>
+
+    </body>
+</html>

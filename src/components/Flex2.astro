@@ -1,0 +1,106 @@
+---
+/* src/components/Flex2.astro */
+const row1 = ["Artistas Independientes", "Marca Personal", "Médicos Especialistas", "Músicos y Bandas", "Creadores", "Profesionistas"];
+const row2 = ["Emprendimientos", "Consultores", "Figuras Públicas", "Clínicas y Consultorios", "Diseñadores", "Productores"];
+---
+
+<section class="flex-container">
+  <div class="marquee-wrapper">
+    <div class="marquee track-1">
+      <div class="marquee-content">
+        {row1.map(word => <span>{word} <span class="dot">•</span></span>)}
+        {row1.map(word => <span>{word} <span class="dot">•</span></span>)}
+      </div>
+    </div>
+    <div class="marquee track-2">
+      <div class="marquee-content reverse">
+        {row2.map(word => <span>{word} <span class="dot">•</span></span>)}
+        {row2.map(word => <span>{word} <span class="dot">•</span></span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .flex-container {
+    width: 100%;
+    background-color: var(--color-bg);
+    padding: 4rem 0;
+    overflow: hidden;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  /* Gradientes a los lados para un desvanecido elegante */
+  .flex-container::before, .flex-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 2;
+  }
+  .flex-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg), transparent);
+  }
+  .flex-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg), transparent);
+  }
+
+  .marquee-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-content {
+    display: inline-block;
+    animation: scroll 35s linear infinite;
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.05);
+    text-transform: uppercase;
+    transition: color 0.4s ease;
+  }
+
+  .marquee-content.reverse {
+    animation-direction: reverse;
+    animation-duration: 40s;
+  }
+
+  /* Efecto al pasar el cursor */
+  .flex-container:hover .marquee-content {
+    animation-play-state: paused;
+    color: rgba(255, 255, 255, 0.2);
+  }
+
+  .flex-container:hover .marquee-content span:hover {
+    color: var(--color-accent);
+    text-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
+    cursor: default;
+  }
+
+  .dot {
+    color: var(--color-fresa, #E91E63);
+    margin: 0 20px;
+    opacity: 0.5;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 850px) {
+    .marquee-content { font-size: 2rem; }
+  }
+</style>

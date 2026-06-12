@@ -1,0 +1,117 @@
+---
+/* src/components/Header.astro */
+const currentPath = Astro.url.pathname;
+---
+
+<header class="header-wrapper">
+  <nav class="nav-container" id="nav-container">
+    
+    <a href="/" class="logo-link desktop-only" aria-label="Inicio">
+      <img src="/assets/images/logo.svg" alt="yagahaus logo" class="logo-desktop" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="/" class={currentPath === "/" ? "active" : ""}>¿Qué hacemos?</a></li>
+      <li><a href="/precios" class={currentPath.startsWith("/precios") ? "active" : ""}>Precios</a></li>
+      <li><a href="/blog" class={currentPath.startsWith("/blog") ? "active" : ""}>Blog</a></li>
+      <li><a href="/contacto" class={currentPath.startsWith("/contacto") ? "active" : ""}>Contacto</a></li>
+    </ul>
+
+    <div class="social-links">
+      <a href="https://instagram.com/yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      <a href="https://facebook.com/yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+      <a href="https://tiktok.com/@yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a>
+    </div>
+
+    <button class="menu-toggle mobile-only" aria-label="Abrir menú" id="mobile-menu-btn">
+      <img src="/assets/images/logo.svg" alt="yagahaus logo" class="logo-mobile" />
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobile-menu">
+    <button id="close-menu-btn" aria-label="Cerrar menú">×</button>
+    
+    <ul>
+      <li><a href="/">¿Qué hacemos?</a></li>
+      <li><a href="/precios">Precios</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/contacto">Contacto</a></li>
+    </ul>
+
+    <div class="mobile-social-links">
+      <a href="https://instagram.com/yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+      <a href="https://facebook.com/yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+      <a href="https://tiktok.com/@yaga.haus" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg></a>
+    </div>
+  </div>
+</header>
+
+<style>
+  .header-wrapper { position: fixed; top: 20px; left: 0; width: 100%; display: flex; justify-content: center; z-index: 1000; padding: 0 20px; box-sizing: border-box; }
+  
+  .nav-container { background-color: var(--color-bg); width: 100%; max-width: 1100px; height: 70px; border-radius: 9999px; display: flex; align-items: center; justify-content: space-between; padding: 0 30px; box-shadow: 0 15px 35px #000000; }
+  .desktop-only { display: flex; }
+  .mobile-only { display: none; }
+  .logo-desktop { height: 30px; }
+  .logo-mobile { height: 25px; }
+
+  /* Enlaces navegación */
+  .nav-links { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+  .nav-links a { text-decoration: none; color: var(--color-text); font-weight: 400; font-size: 1rem; transition: color 0.3s ease; }
+  .nav-links a:hover, .nav-links a.active { color: var(--color-accent); font-weight: 600; }
+
+  /* Redes sociales */
+  .social-links { display: flex; gap: 15px; align-items: center; }
+  .social-links a { color: var(--color-accent); transition: transform 0.3s ease; }
+  .social-links a:hover { transform: scale(1.1); }
+
+  .menu-toggle { background: none; border: none; cursor: pointer; padding: 0; }
+
+  /* Menú Móvil */
+  .mobile-menu { display: none; position: fixed; top: 110px; left: 20px; right: 20px; width: auto; background-color: var(--color-bg); border-radius: 24px; box-shadow: 0 15px 35px #000000; padding: 40px 25px; flex-direction: column; text-align: center; }
+  .mobile-menu.open { display: flex; }
+  #close-menu-btn { position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--color-text); font-size: 2rem; cursor: pointer; }
+  .mobile-menu ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px; }
+  .mobile-menu a { color: var(--color-text); text-decoration: none; font-size: 1.2rem; font-weight: 600; }
+  .mobile-menu a:active { color: var(--color-accent); }
+  
+  /* Redes sociales en móvil */
+  .mobile-social-links { display: flex; justify-content: center; gap: 25px; }
+  .mobile-social-links a { color: var(--color-accent); }
+
+  @media (max-width: 850px) {
+    .desktop-only { display: none !important; }
+    .mobile-only { display: flex !important; }
+    .nav-links, .social-links { display: none; }
+    .header-wrapper { justify-content: flex-start; padding-left: 20px; }
+    .nav-container { width: auto; padding: 0 20px; border-radius: 9999px; justify-content: flex-start; }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  const closeMenu = () => menu.classList.remove('open');
+  const openMenu = () => menu.classList.add('open');
+
+  btn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    openMenu();
+  });
+
+  closeBtn?.addEventListener('click', closeMenu);
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', (e) => {
+    if (menu.classList.contains('open') && !menu.contains(e.target as Node) && e.target !== btn) {
+      closeMenu();
+    }
+  });
+
+  // Cerrar al cambiar tamaño de pantalla
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 850) closeMenu();
+  });
+</script>
