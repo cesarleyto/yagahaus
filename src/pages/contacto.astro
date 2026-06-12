@@ -2,7 +2,7 @@
 /* src/pages/contacto.astro */
 import Layout from '../layouts/Layout.astro';
 import ContactoForm from '../components/ContactoForm.astro';
-import HeroMini from '../components/HeroMini.astro';
+import Flex2 from '../components/Flex2.astro';
 ---
 
 <Layout title="Contacto | yagahaus">
@@ -24,9 +24,9 @@ import HeroMini from '../components/HeroMini.astro';
 
   </section>
 
-  <!-- COMPONENTE HERO MINI (Fuera del contenedor con padding) -->
+  <!-- COMPONENTE FLEX2 -->
   <div class="minihero-wrapper">
-    <HeroMini />
+    <Flex2 />
   </div>
 
 </Layout>
@@ -41,7 +41,7 @@ import HeroMini from '../components/HeroMini.astro';
     flex-direction: column; 
     align-items: center; 
     box-sizing: border-box; 
-    min-height: calc(100vh - 200px); /* Ajuste menor para compensar el espacio que ahora toma HeroMini */
+    min-height: calc(100vh - 200px);
   }
 
   .contacto-header { 

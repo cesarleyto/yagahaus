@@ -2,7 +2,7 @@
 /* src/pages/blog/index.astro */
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Hero from '../../components/Hero.astro'; // Asegúrate de que el nombre coincida con tu archivo
+import Porque from '../../components/Porque.astro';
 
 // 1. Obtenemos todos los artículos de la carpeta src/content/blog
 const posts = await getCollection('blog');
@@ -63,7 +63,7 @@ const categories = [...new Set(sortedPosts.map((post) => post.data.category).fil
 
   <!-- Remate visual: Componente Hero fuera del contenedor para que ocupe el 100% -->
   <div class="minihero-wrapper">
-    <Hero />
+    <Porque />
   </div>
 
 </Layout>
