@@ -79,12 +79,34 @@ const currentPath = Astro.url.pathname;
   .mobile-social-links { display: flex; justify-content: center; gap: 25px; }
   .mobile-social-links a { color: var(--color-accent); }
 
+  /* === AJUSTES RESPONSIVOS COMPACTOS === */
   @media (max-width: 850px) {
     .desktop-only { display: none !important; }
     .mobile-only { display: flex !important; }
     .nav-links, .social-links { display: none; }
-    .header-wrapper { justify-content: flex-start; padding-left: 20px; }
-    .nav-container { width: auto; padding: 0 20px; border-radius: 9999px; justify-content: flex-start; }
+    
+    .header-wrapper { 
+      justify-content: flex-start; 
+      padding-left: 20px; 
+      top: 15px; /* Lo acercamos un poquito más al borde superior en móvil */
+    }
+    
+    .nav-container { 
+      width: auto; 
+      height: 54px; /* <--- REDUCIDO AL ~80% (De 70px a 54px) */
+      padding: 0 22px; /* Reducimos padding interno proporcionalmente */
+      border-radius: 9999px; 
+      justify-content: flex-start; 
+    }
+
+    .logo-mobile {
+      height: 20px; /* <--- Reducimos un poco el logo de adentro para que no se ahogue */
+    }
+
+    /* Ajustamos la posición del menú desplegable para que coincida con el nuevo tamaño */
+    .mobile-menu {
+      top: 85px; 
+    }
   }
 </style>
 
