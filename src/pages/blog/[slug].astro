@@ -4,7 +4,6 @@ import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Porque from '../../components/Porque.astro'; 
 
-// 1. Astro busca todos los artículos y genera las URLs dinámicas (slugs)
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog');
   return blogEntries.map(entry => ({
@@ -13,17 +12,18 @@ export async function getStaticPaths() {
   }));
 }
 
-// 2. Extraemos el artículo específico que el usuario está visitando
 const { entry } = Astro.props;
-
-// 3. Renderizamos el cuerpo de texto de Markdown a HTML (Método actualizado)
 const { Content } = await render(entry);
+
+// Extraemos limpiamente los metadatos dinámicos del .md de tu artículo
+const postTitle = `${entry.data.title} | yagahaus`;
+const postDescription = entry.data.description;
+const postImage = entry.data.image;
 ---
 
-<Layout title={`${entry.data.title} | yagahaus`}>
+<Layout title={postTitle} description={postDescription} image={postImage}>
   
   <article class="post-container">
-    
     <header class="post-header">
       {entry.data.category && (
         <span class="category-badge">{entry.data.category}</span>
@@ -47,11 +47,9 @@ const { Content } = await render(entry);
     <div class="post-content">
       <Content />
     </div>
-
   </article>
 
   <Porque /> 
-
 </Layout>
 
 <style>

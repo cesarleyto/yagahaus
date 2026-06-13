@@ -5,15 +5,21 @@ import '../styles/global.css';
 interface Props {
     title?: string;
     description?: string;
-    image?: string; // Añadimos imagen para que cada link pueda tener su propia portada en WhatsApp
+    image?: string; // Recibirá el "avatar" del archivo .md
 }
 
-/* Metadatos Dinámicos por defecto enfocados en Smart Links */
 const { 
-    title = "Enlace Inteligente | yagahaus", 
+    title = "Enlace Inteligente", 
     description = "Accede a nuestros enlaces oficiales, lanzamientos y contenido exclusivo en un solo lugar.",
-    image = "/assets/images/icon.svg" // Imagen por defecto si el cliente no sube una
+    image = "/assets/images/icon.svg" // Icono genérico por defecto
 } = Astro.props;
+
+// Añadimos tu firma dinámica al título
+const signedTitle = `${title} | Powered by yaga.haus`;
+
+// Forzamos rutas absolutas para que no falle la vista previa en celulares
+const socialImageURL = new URL(image, Astro.site || 'https://yaga.haus').href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://yaga.haus').href;
 ---
 
 <!doctype html>
@@ -27,28 +33,23 @@ const {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <meta name="generator" content={Astro.generator} />
 
-        <title>{title}</title>
+        <title>{signedTitle}</title>
         <meta name="description" content={description} />
-        <meta name="keywords" content="smart links, enlace inteligente, presave, link in bio, ecosistema digital, shortlink, yagahaus" />
+        <meta name="keywords" content="smart links,enlace inteligente,presave,link in bio,yagahaus" />
         <meta name="author" content="yagahaus" />
+        <link rel="canonical" href={canonicalURL} />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={Astro.url} />
-        <meta property="og:title" content={title} />
+        <meta property="og:url" content={canonicalURL} />
+        <meta property="og:title" content={signedTitle} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={image} /> 
-
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content={Astro.url} />
-        <meta property="twitter:title" content={title} />
+        <meta property="og:image" content={socialImageURL} /> <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonicalURL} />
+        <meta property="twitter:title" content={signedTitle} />
         <meta property="twitter:description" content={description} />
-        <meta property="twitter:image" content={image} />
+        <meta property="twitter:image" content={socialImageURL} />
 
         <style>
-            /* EL FIX DEL CENTRADO MÓVIL:
-              Esto resetea los márgenes, prohíbe el desbordamiento horizontal 
-              y obliga a que el padding se calcule hacia adentro (border-box).
-            */
             html, body {
                 margin: 0;
                 padding: 0;
@@ -64,10 +65,8 @@ const {
     </head>
     
     <body style="display: flex; flex-direction: column; min-height: 100vh;">
-        
         <main style="flex: 1; display: flex; flex-direction: column; width: 100%;">
             <slot />
         </main>
-
     </body>
 </html>
