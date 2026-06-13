@@ -11,11 +11,11 @@ interface Props {
 const { 
     title = "Enlace Inteligente", 
     description = "Accede a nuestros enlaces oficiales, lanzamientos y contenido exclusivo en un solo lugar.",
-    image = "/assets/images/icon.svg" // Icono genérico por defecto
+    image = "/og-image.jpg" // Icono genérico por defecto
 } = Astro.props;
 
 // Añadimos tu firma dinámica al título
-const signedTitle = `${title} | Powered by yaga.haus`;
+const signedTitle = `${title} | powered by yaga.haus`;
 
 // Forzamos rutas absolutas para que no falle la vista previa en celulares
 const socialImageURL = new URL(image, Astro.site || 'https://yaga.haus').href;
