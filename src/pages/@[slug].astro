@@ -21,8 +21,11 @@ const acento = data.colorAcento;
 const texto = data.colorTexto;
 ---
 
-<Biolinks title={`${data.title}`}>
-  
+<Biolinks 
+  title={data.title} 
+  description={data.descripcion} 
+  image={data.avatar}
+>  
   {data.pixel_meta && (
     <Fragment slot="head">
       <meta name="facebook-pixel-id" content={data.pixel_meta} />

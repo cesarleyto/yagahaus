@@ -14,7 +14,10 @@ const sortedPosts = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.val
 const categories = [...new Set(sortedPosts.map((post) => post.data.category).filter(Boolean))];
 ---
 
-<Layout title="Blog | yagahaus">
+<Layout 
+  title="Blog | yagahaus" 
+  description="Aprende a poner el algoritmo a tu favor. Conoce tácticas avanzadas de posicionamiento digital, ingeniería web y conversión. Recursos y estrategias a la medida para profesionistas, figuras públicas y artistas."
+>
   
   <section class="blog-index-container">
     
