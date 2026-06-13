@@ -1,4 +1,137 @@
-/* === OPTIMIZACIÓN PARA MÓVILES (COLAPSADO) === */
+---
+/* src/components/Quien.astro */
+---
+
+<section class="quien-container">
+  <div class="quien-media-col">
+    
+    <div class="lottie-desktop">
+      <script type="module" src="https://unpkg.com/@lottiefiles/dotlottie-wc@latest/dist/dotlottie-wc.js"></script>
+      <dotlottie-wc 
+        src="/assets/yagahaus.json" 
+        background="transparent" 
+        speed="1" 
+        style="width: 80%; height: 80%;" 
+        loop 
+        autoplay>
+      </dotlottie-wc>
+    </div>
+
+    <div class="image-mobile">
+      <img src="/assets/images/5.jpeg" alt="Ingeniería y posicionamiento a la medida" class="zoom-image" />
+    </div>
+
+  </div>
+  
+  <div class="quien-text-col">
+    <h2>Ponemos al algoritmo <br><span class="highlight-black">a tu favor.</span></h2>
+    <p>
+      Para conseguir más ventas, mayores reproducciones o llenar tu agenda de citas médicas, ya no basta con subir contenido. Los algoritmos de hoy recomiendan a perfiles auténticos con contenidos de valor y confiables para los motores de búsqueda.
+      <br><br>
+      Nosotros no revendemos plantillas ni usamos creadores de sitios; hacemos código a la medida e ingeniería de datos para alcanzar conversión inteligente.
+    </p>
+    <a href="/contacto" class="btn-primary-dark">
+      Solicita una Auditoría
+    </a>
+  </div>
+</section>
+
+<style>
+  /* === OPTIMIZACIÓN DE HARDWARE Y ESCALA (ZOOM) LOTTIE === */
+  dotlottie-wc {
+    will-change: transform; 
+    transform: translateZ(0) scale(1.5); 
+    backface-visibility: hidden;
+  }
+
+  .quien-container {
+    display: flex;
+    background-color: var(--color-fresa);
+    color: var(--color-bg); 
+    width: 100%;
+    min-height: 100vh; 
+    margin-top: -120px; 
+  }
+
+  .quien-media-col {
+    width: 50%;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    padding: 8rem 2rem 2rem 2rem; 
+    box-sizing: border-box;
+  }
+
+  /* === CONTROL DE VISIBILIDAD === */
+  .lottie-desktop {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-mobile {
+    display: none; /* Apagado por defecto en monitores grandes */
+  }
+
+  /* El efecto de alto impacto para la foto */
+  .zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+
+  .zoom-image:hover {
+    transform: scale(1.08); /* Efecto Zoom In idéntico al otro componente */
+  }
+
+  .quien-text-col {
+    width: 50%;
+    padding: 10rem 4rem 4rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+
+  .quien-text-col h2 {
+    font-size: 2.8rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight-black {
+    font-weight: 800;
+  }
+
+  .quien-text-col p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .btn-primary-dark {
+    display: inline-block;
+    align-self: flex-start;
+    background-color: var(--color-accent);
+    color: var(--color-bg); 
+    padding: 15px 30px;
+    border-radius: 99px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-primary-dark:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 255, 153, 0.3);
+  }
+
+  /* === OPTIMIZACIÓN PARA MÓVILES (COLAPSADO) === */
   @media (max-width: 850px) {
     .quien-container {
       flex-direction: column;
