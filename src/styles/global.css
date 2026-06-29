@@ -3,21 +3,21 @@
 
 :root {
   /* --- COLORES BASE --- */
-  --default-color: #0d120d;
-  --default-color-similar: #161d15;
+  --default-color: #12121f;
+  --default-color-similar: #0d0d13;
   
-  --color-acento: #33ff69;
-  --color-acento2: #33ff69;
+  --color-acento: #de1a6b;
+  --color-acento2: #de1a6b;
 
   /* --- TÍTULOS --- */
-  --titulos-default-color: #33ff69;
-  --titulos-color-acento: #161d15;
-  --titulos-color-acento2: #161d15;
+  --titulos-default-color: #de1a6b;
+  --titulos-color-acento: #12121f;
+  --titulos-color-acento2: #12121f;
 
   /* --- TEXTOS --- */
   --texto-default-color: #dad9d9;
-  --texto-color-acento: #161d15;
-  --texto-color-acento2: #161d15;
+  --texto-color-acento: #12121f;
+  --texto-color-acento2: #12121f;
 
   /* --- FUENTES --- */
   --font-main: 'Space Mono', monospace;
