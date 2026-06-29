@@ -1,26 +1,26 @@
 /* src/styles/global.css */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   /* --- COLORES BASE --- */
-  --default-color: #ffffff;
-  --default-color-similar: #eaeaea;
+  --default-color: #0d120d;
+  --default-color-similar: #161d15;
   
-  --color-acento: #eaeaea;
-  --color-acento2: #ffffff;
+  --color-acento: #33ff69;
+  --color-acento2: #33ff69;
 
   /* --- TÍTULOS --- */
-  --titulos-default-color: #000000;
-  --titulos-color-acento: #000000;
-  --titulos-color-acento2: #000000;
+  --titulos-default-color: #33ff69;
+  --titulos-color-acento: #161d15;
+  --titulos-color-acento2: #161d15;
 
   /* --- TEXTOS --- */
-  --texto-default-color: #000000;
-  --texto-color-acento: #000000;
-  --texto-color-acento2: #000000;
+  --texto-default-color: #dad9d9;
+  --texto-color-acento: #161d15;
+  --texto-color-acento2: #161d15;
 
   /* --- FUENTES --- */
-  --font-main: 'Montserrat', sans-serif;
+  --font-main: 'Space Mono', monospace;
   --font-mono: 'Space Mono', monospace;
 
   /* --- FORMAS --- */
@@ -49,6 +49,15 @@ body {
 /* 1. Fondo Default */
 .fondo-default {
   background-color: var(--default-color);
+  color: var(--texto-default-color);
+  --titulo-actual: var(--titulos-default-color);
+  --btn-bg: var(--color-acento);
+  --btn-text: var(--texto-color-acento);
+  --outline-color: var(--texto-default-color);
+}
+
+.fondo-default-similar {
+  background-color: var(--default-color-similar);
   color: var(--texto-default-color);
   --titulo-actual: var(--titulos-default-color);
   --btn-bg: var(--color-acento);
@@ -195,4 +204,27 @@ h1, h2, h3, h4 {
     position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none;
     color: var(--texto-default-color); cursor: pointer;
   }
+}
+/* ==========================================
+   ENLACES (Solo links de texto, excluyendo botones)
+   ========================================== */
+
+/* 1. Selector que excluye explícitamente tus botones y componentes de navegación */
+a:not([class*="btn"]):not(.nav-link):not(.sopa-tag):not(.social-nav-link):not(.blog-card) {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--color-acento);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+
+/* 2. Fuerza a que los enlaces visitados nunca se pongan morados */
+a:visited:not([class*="btn"]):not(.nav-link):not(.sopa-tag):not(.social-nav-link):not(.blog-card) {
+  color: inherit;
+}
+
+/* 3. Hover solo para links de texto */
+a:hover:not([class*="btn"]):not(.nav-link):not(.sopa-tag):not(.social-nav-link):not(.blog-card) {
+  color: var(--color-acento);
+  text-decoration-color: var(--texto-default-color);
 }
