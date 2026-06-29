@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: cesarleyto/template
+  repo: cesarleyto/yagahaus
   branch: main
 
 # Carpeta de imágenes por default
