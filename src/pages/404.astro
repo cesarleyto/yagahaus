@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Error 404 | Yagahaus">
+  <main class="error-container">
+    <h1>404</h1>
+    <p>Página no encontrada. Serás redireccionado a la página principal en unos segundos...</p>
+
+    <a href="/" class="btn-neon">
+      Volver ahora
+    </a>
+  </main>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 5000);
+  </script>
+</Layout>
+
+<style>
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Usamos calc para restar el alto aproximado de tu menú y que quede bien centrado */
+    min-height: calc(100vh - 100px); 
+    padding: 2rem;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 8rem;
+    font-weight: 800;
+    color: var(--color-fresa);
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    max-width: 500px;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    color: #E2E8F0;
+  }
+
+  .btn-neon {
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-bg);
+    padding: 16px 36px;
+    border-radius: 99px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 255, 153, 0.3);
+  }
+</style>
