@@ -1,14 +1,14 @@
 {
   "title": "yagahaus | music",
-  "description": "Especialista en el cuidado integral de recién nacidos, niños y adolescentes. Atención médica con calidez, empatía y base científica.",
-  "keywords": "Av. de la Salud 123, Col. Centro, Tehuantepec, Oaxaca.",
-  "address": "Porfirio Diaz 10, Barrio Laborio, Santo Domingo Tehuantepec, Oaxaca.",
+  "description": "sello de música independiente",
+  "keywords": "",
+  "address": "",
   "email": "hola@yaga.haus",
   "telefonos": [
     {
       "tipo": "Telegram",
       "nombre": "Telegram",
-      "numero": "@yagahaus"
+      "numero": "yagahaus"
     }
   ],
   "redes": [
