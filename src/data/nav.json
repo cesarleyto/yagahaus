@@ -1,10 +1,10 @@
 {
   "showSocials": true,
-  "enlaces": [
+  "enlaces": [],
+  "botones": [
     {
-      "texto": "Inicio",
-      "url": "/"
+      "texto": "DEV",
+      "url": "https://dev.yaga.haus"
     }
-  ],
-  "botones": []
+  ]
 }
