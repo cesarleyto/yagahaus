@@ -31,30 +31,6 @@ const getContactIcon = (tipo: string) => {
     </div>
   )}
 
-  <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; width: 100%;">
-    
-    {email && (
-      <a href={`mailto:${email}`} class="btn-outline">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        <span>{email}</span>
-      </a>
-    )}
-
-    {telefonos.map((tel: any) => {
-      let link = `tel:${tel.numero}`;
-      if (tel.tipo === 'WhatsApp') link = `https://wa.me/${tel.numero.replace(/\D/g, '')}`;
-      if (tel.tipo === 'Telegram') link = `https://t.me/${tel.numero.replace(/\D/g, '')}`;
-
-      return (
-        <a href={link} target="_blank" rel="noopener noreferrer" class="btn-outline">
-          <span style="display: flex; align-items: center;" set:html={getContactIcon(tel.tipo)} />
-          <span>{tel.nombre}</span>
-        </a>
-      );
-    })}
-
-  </div>
-
   <hr style="width: 100%; max-width: 850px; border: none; border-top: 1px solid rgba(255, 255, 255, 0.15); margin: 0.5rem 0 0;" />
 
   <div style="font-size: 0.85rem; opacity: 0.8; font-weight: 500; letter-spacing: 0.02em;">
