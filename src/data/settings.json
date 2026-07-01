@@ -1,5 +1,5 @@
 {
-  "title": "yagahaus",
+  "title": "yaga.haus",
   "description": "muy pronto",
   "keywords": "",
   "address": "",
@@ -14,15 +14,15 @@
   "redes": [
     {
       "red": "Facebook",
-      "url": "https://www.facebook.com/yagahaus"
+      "url": "https://www.facebook.com/yaga.haus"
     },
     {
       "red": "Instagram",
-      "url": "https://www.instagram.com/yagahaus"
+      "url": "https://www.instagram.com/yaga.haus"
     },
     {
-      "red": "TikTok",
-      "url": "https://www.tiktok.com/@yagahaus"
+      "red": "YouTube",
+      "url": "https://www.youtube.com/@yagahaus"
     }
   ]
 }
