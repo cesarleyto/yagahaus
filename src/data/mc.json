@@ -19,6 +19,7 @@
     "items": [
       {
         "tipo": "video",
+        "esShort": true,
         "titulo": "Anuncio: HugoFest 2026",
         "cliente": "Hugo Álvarez",
         "youtubeId": "biwoF7BYXk8",
@@ -45,6 +46,7 @@
       },
       {
         "tipo": "video",
+        "esShort": true,
         "titulo": "Anuncio: ¡El Movimiento de la Alegría!",
         "cliente": "Vania Talamantes",
         "youtubeId": "n1MVTh3kguI",
