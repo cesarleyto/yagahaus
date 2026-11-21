@@ -85,7 +85,17 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     .fondo-acento { background-color: var(--color-acento); color: var(--texto-color-acento); --titulo-actual: var(--titulos-color-acento); }
     .fondo-acento2 { background-color: var(--color-acento2); color: var(--texto-color-acento2); --titulo-actual: var(--titulos-color-acento2); }
 
-    h1, h2, h3, h4 {
+    /* TÍTULOS GRANDES EN MONOSPACE Y MAYÚSCULAS */
+    h1, h2 {
+      font-family: var(--font-mono);
+      color: var(--titulo-actual, var(--titulos-default-color));
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h3, h4 {
       font-family: var(--font-main);
       color: var(--titulo-actual, var(--titulos-default-color));
       font-weight: 800;
@@ -244,7 +254,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       gap: 50px; align-items: center;
     }
     .hero-text h1 {
-      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-size: clamp(1.9rem, 3.8vw, 2.95rem);
       color: var(--color-acento2);
       margin-bottom: 20px;
       letter-spacing: -0.02em;

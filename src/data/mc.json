@@ -6,8 +6,8 @@
   },
   "hero": {
     "tag": "PRODUCCIÓN DE CONTENIDOS POLÍTICO ELECTORALES",
-    "title": "El futuro es naranja y se construye contenidos estratégicos.",
-    "description": "Creamos productos digitales imparables. Spots, identidades visuales y estrategias para conectar con su comunidad meta.",
+    "title": "Una campaña se gana con estrategia y territorio.",
+    "description": "Creamos productos digitales imparables. Spots, identidades visuales, narrativas territoriales y estrategias para conectar con su comunidad meta.",
     "buttonText": "Hablemos de su proyecto",
     "buttonLink": "#contacto",
     "image": "/assets/images/mc/hero-campana.jpg",
@@ -52,7 +52,7 @@
       {
         "tipo": "imagen",
         "esShort": false,
-        "titulo": "Gráficos de Campaña & Posicionamiento",
+        "titulo": "Productos Gráficos",
         "imagenes": [
           { "src": "/assets/images/mc/ejemplos/campana-1.jpg" },
           { "src": "/assets/images/mc/ejemplos/campana-2.jpg" },
@@ -81,7 +81,7 @@
       {
         "tipo": "imagen",
         "esShort": false,
-        "titulo": "Identidad Territorial y Puntos Icónicos",
+        "titulo": "Identidad Territorial",
         "imagenes": [
           { "src": "/assets/images/mc/ejemplos/localidad-1.jpg" },
           { "src": "/assets/images/mc/ejemplos/localidad-2.jpg" },
@@ -95,7 +95,7 @@
       {
         "tipo": "imagen",
         "esShort": false,
-        "titulo": "Fotografía Oficial de Perfil y Candidatura",
+        "titulo": "Fotografía de Perfil",
         "imagenes": [
           { "src": "/assets/images/mc/ejemplos/perfil-1.jpg" },
           { "src": "/assets/images/mc/ejemplos/perfil-2.jpg" },

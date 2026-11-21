@@ -41,24 +41,27 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
   
   <style>
     /* ==========================================
-       CSS BASE (Paleta Guinda #6d0c2e con degradados más claros)
+       CSS BASE (Paleta Guinda #6d0c2e - Modo Nocturno Alternado)
        ========================================== */
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
     :root {
-      --default-color: #ffffff;
-      --default-color-similar: #faf6f7;
+      --default-color: #14050a;
+      --default-color-similar: #240913;
+      --surface-card-dark: #210811;
+      --surface-card-darker: #17060c;
+
       --color-acento: #6d0c2e;
       --color-acento-claro: #8f1540;
       --color-acento-brillo: #b31d52;
       --color-acento-suave: #d44978;
       --color-acento2: #1c0810;
 
-      --titulos-default-color: #6d0c2e;
+      --titulos-default-color: #f38bb0;
       --titulos-color-acento: #ffffff;
       --titulos-color-acento2: #e67399;
 
-      --texto-default-color: #1c0810;
+      --texto-default-color: #f4e6eb;
       --texto-color-acento: #ffffff;
       --texto-color-acento2: #f8eef1;
 
@@ -73,7 +76,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     html { scroll-behavior: smooth; }
 
     body {
-      background-color: var(--default-color-similar);
+      background-color: var(--default-color);
       color: var(--texto-default-color);
       font-family: var(--font-main);
       line-height: 1.6;
@@ -81,13 +84,23 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       overflow-x: hidden;
     }
 
-    /* MÁQUINAS DE CONTRASTE */
+    /* MÁQUINAS DE CONTRASTE NOCTURNAS */
     .fondo-default { background-color: var(--default-color); color: var(--texto-default-color); --titulo-actual: var(--titulos-default-color); }
     .fondo-similar { background-color: var(--default-color-similar); color: var(--texto-default-color); --titulo-actual: var(--titulos-default-color); }
     .fondo-acento { background: linear-gradient(135deg, #6d0c2e, #9c1847); color: var(--texto-color-acento); --titulo-actual: var(--titulos-color-acento); }
     .fondo-acento2 { background-color: var(--color-acento2); color: var(--texto-color-acento2); --titulo-actual: var(--titulos-color-acento2); }
 
-    h1, h2, h3, h4 {
+    /* TÍTULOS GRANDES EN MONOSPACE Y MAYÚSCULAS */
+    h1, h2 {
+      font-family: var(--font-mono);
+      color: var(--titulo-actual, var(--titulos-default-color));
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    h3, h4 {
       font-family: var(--font-main);
       color: var(--titulo-actual, var(--titulos-default-color));
       font-weight: 800;
@@ -104,11 +117,11 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       border-radius: var(--radius-capsule);
       transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
       border: none; cursor: pointer;
-      box-shadow: 0 4px 16px rgba(109, 12, 46, 0.35);
+      box-shadow: 0 4px 16px rgba(109, 12, 46, 0.45);
     }
     .btn-principal:hover {
       transform: scale(1.06);
-      box-shadow: 0 8px 25px rgba(179, 29, 82, 0.52);
+      box-shadow: 0 8px 25px rgba(179, 29, 82, 0.6);
     }
 
     .tag-mono {
@@ -118,6 +131,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       color: #fff;
       padding: 5px 14px; border-radius: var(--radius-capsule);
       display: inline-block; margin-bottom: 1rem; letter-spacing: 0.5px;
+      border: 1px solid rgba(230, 115, 153, 0.25);
     }
 
     /* ==========================================
@@ -132,7 +146,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       width: 100%; max-width: 1100px; pointer-events: auto;
       background: linear-gradient(to right, #6d0c2e, #9b1746, #bd2258);
       border-radius: var(--radius-capsule);
-      box-shadow: 0 12px 32px rgba(109, 12, 46, 0.35);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
       padding: 10px 24px;
       display: flex; align-items: center; justify-content: space-between;
       transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -210,7 +224,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       position: fixed; top: 90px; left: 20px; width: 250px; max-width: calc(100% - 40px);
       background: linear-gradient(145deg, #6d0c2e, #a3194a, #c72960);
       border-radius: var(--radius-card);
-      padding: 18px; box-shadow: 0 20px 50px rgba(109, 12, 46, 0.42);
+      padding: 18px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
       display: flex; flex-direction: column; gap: 10px;
       z-index: 999; opacity: 0; visibility: hidden;
       transform: translateY(-15px) scale(0.96);
@@ -234,13 +248,14 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
 
     /* ==========================================
-       2. BLOQUE HERO (QUIÉNES SOMOS)
+       2. BLOQUE HERO (QUIÉNES SOMOS - OSCURO CONTRASTANTE)
        ========================================== */
     .hero-campanas {
       min-height: 92vh;
       padding: 130px 20px 80px;
       display: flex; align-items: center; justify-content: center;
-      background: radial-gradient(circle at top right, #f5dce4 0%, var(--default-color-similar) 55%, #ffffff 100%);
+      background: radial-gradient(circle at top right, #420c20 0%, #1d070f 50%, #120409 100%);
+      border-bottom: 1px solid rgba(230, 115, 153, 0.14);
     }
     .hero-grid {
       max-width: 1100px; width: 100%;
@@ -248,22 +263,21 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       gap: 50px; align-items: center;
     }
     .hero-text h1 {
-      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
-      color: var(--color-acento2);
+      font-size: clamp(1.9rem, 3.8vw, 2.95rem);
+      color: #ffffff;
       margin-bottom: 20px;
-      letter-spacing: -0.02em;
     }
-    .hero-text h1 span { color: var(--color-acento); }
+    .hero-text h1 span { color: #e67399; }
     .hero-text p {
-      font-size: 1.08rem; color: #3d2a31; margin-bottom: 32px; line-height: 1.75;
+      font-size: 1.08rem; color: #e6d1d8; margin-bottom: 32px; line-height: 1.75;
     }
 
     .hero-photo-frame {
       position: relative;
       border-radius: var(--radius-card);
       overflow: hidden;
-      box-shadow: 0 20px 45px rgba(109, 12, 46, 0.2);
-      border: 4px solid #ffffff;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+      border: 3px solid rgba(230, 115, 153, 0.35);
       aspect-ratio: 4 / 4.2;
       background: var(--color-acento2);
     }
@@ -280,17 +294,18 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
        ========================================== */
     .seccion { padding: 90px 20px; display: flex; flex-direction: column; align-items: center; }
     .contenedor { max-width: 1100px; width: 100%; margin: 0 auto; }
-    .seccion-header { text-align: center; max-width: 720px; margin: 0 auto 38px; }
-    .seccion-header h2 { font-size: clamp(2rem, 3.8vw, 2.8rem); margin-bottom: 14px; }
-    .seccion-header p { font-size: 1rem; opacity: 0.85; }
+    .seccion-header { text-align: center; max-width: 760px; margin: 0 auto 38px; }
+    .seccion-header h2 { font-size: clamp(1.75rem, 3.4vw, 2.55rem); margin-bottom: 14px; }
+    .seccion-header p { font-size: 1rem; color: #dcc4cd; }
 
     /* ==========================================
-       3. BLOQUE SOLUCIONES (3 BOTONES + DESPLEGABLE)
+       3. BLOQUE SOLUCIONES (SE CONSERVA EXACTAMENTE IGUAL)
        ========================================== */
     .soluciones-section {
       position: relative;
       overflow: hidden;
       background: linear-gradient(135deg, #330716 0%, #1c0810 100%);
+      border-bottom: 1px solid rgba(230, 115, 153, 0.14);
     }
     .soluciones-triggers {
       display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
@@ -411,8 +426,13 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
 
     /* ==========================================
-       4. BLOQUE PORTAFOLIO + FILTROS + CARRUSEL 1:1 BLANCO
+       4. BLOQUE PORTAFOLIO (OSCURO CONTRASTANTE + TARJETAS NOCTURNAS)
        ========================================== */
+    #portafolio {
+      background: radial-gradient(circle at bottom left, #2a0915 0%, #14050a 65%);
+      border-bottom: 1px solid rgba(230, 115, 153, 0.14);
+    }
+
     .portafolio-filtros {
       display: flex;
       flex-wrap: wrap;
@@ -430,27 +450,28 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       font-size: 0.88rem;
       padding: 11px 22px;
       border-radius: var(--radius-capsule);
-      border: 2px solid rgba(109, 12, 46, 0.28);
-      background: var(--default-color-similar);
-      color: var(--color-acento2);
+      border: 2px solid rgba(230, 115, 153, 0.32);
+      background: rgba(255, 255, 255, 0.05);
+      color: #f8eef1;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .filtro-btn svg {
       width: 18px;
       height: 18px;
-      color: var(--color-acento);
+      color: #e67399;
       transition: color 0.3s ease;
     }
     .filtro-btn:hover {
-      border-color: var(--color-acento);
+      border-color: #e67399;
+      background: rgba(179, 29, 82, 0.2);
       transform: translateY(-2px);
     }
     .filtro-btn.active {
       background: linear-gradient(to right, #6d0c2e, #9e1848, #c2255c);
-      border-color: transparent;
+      border-color: #ffffff;
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(109, 12, 46, 0.32);
+      box-shadow: 0 8px 20px rgba(179, 29, 82, 0.42);
       transform: scale(1.04);
     }
     .filtro-btn.active svg {
@@ -464,11 +485,11 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       align-items: start;
     }
     .portafolio-card {
-      background: #ffffff;
+      background: var(--surface-card-dark);
       border-radius: var(--radius-card);
       padding: 28px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
-      border: 2px solid rgba(109, 12, 46, 0.14);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+      border: 2px solid rgba(230, 115, 153, 0.2);
       display: flex; flex-direction: column; gap: 18px;
       transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     }
@@ -477,8 +498,8 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .portafolio-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(179, 29, 82, 0.48);
-      box-shadow: 0 18px 40px rgba(109, 12, 46, 0.14);
+      border-color: rgba(230, 115, 153, 0.55);
+      box-shadow: 0 18px 44px rgba(109, 12, 46, 0.35);
     }
 
     .portafolio-card-header {
@@ -486,30 +507,30 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .tipo-badge {
       width: 46px; height: 46px; border-radius: 14px;
-      background: #fdf2f6;
-      color: var(--color-acento);
+      background: rgba(179, 29, 82, 0.22);
+      color: #f38bb0;
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      border: 1.5px solid rgba(109, 12, 46, 0.22);
+      border: 1.5px solid rgba(230, 115, 153, 0.35);
     }
     .tipo-badge svg { width: 24px; height: 24px; }
     .portafolio-title-group {
       display: flex; flex-direction: column; gap: 5px;
     }
     .portafolio-card-header h3 {
-      font-size: 1.22rem; color: var(--color-acento2); font-weight: 800;
+      font-size: 1.22rem; color: #ffffff; font-weight: 800;
     }
     .cliente-badge {
       display: inline-flex; align-items: center; gap: 6px;
       font-family: var(--font-mono); font-size: 0.74rem; font-weight: 700;
-      color: var(--color-acento);
-      background: #fdf2f6;
-      border: 1px solid rgba(109, 12, 46, 0.22);
+      color: #f38bb0;
+      background: rgba(179, 29, 82, 0.2);
+      border: 1px solid rgba(230, 115, 153, 0.32);
       padding: 3px 10px; border-radius: var(--radius-capsule);
       width: fit-content;
     }
 
-    /* Contenedor Multimedia: 16:9 oscuro para Videos y 1:1 blanco limpio para Imágenes */
+    /* Contenedor Multimedia: 16:9 oscuro para Videos y 1:1 transparente para fundirse con el fondo */
     .portafolio-media {
       width: 100%;
       border-radius: 16px;
@@ -518,12 +539,12 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .portafolio-media.media-video {
       aspect-ratio: 16 / 9;
-      background: var(--color-acento2);
+      background: #0d0306;
     }
     .portafolio-media.media-gallery {
       aspect-ratio: 1 / 1;
-      background: #ffffff;
-      border: 1px solid rgba(0, 0, 0, 0.06);
+      background: transparent;
+      border: none;
     }
     .portafolio-media iframe {
       width: 100%; height: 100%; border: none; display: block;
@@ -538,7 +559,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       width: 100%; height: 100%; cursor: zoom-in; position: relative;
       display: flex; align-items: center; justify-content: center;
       padding: 6px;
-      background: #ffffff;
+      background: transparent;
     }
     .portafolio-img-trigger img {
       max-width: 100%; max-height: 100%; width: auto; height: auto;
@@ -550,17 +571,17 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .zoom-hint {
       position: absolute; bottom: 12px; right: 12px;
-      background: rgba(28, 8, 16, 0.85); color: #fff;
+      background: rgba(28, 8, 16, 0.88); color: #fff;
       font-family: var(--font-mono); font-size: 0.72rem;
       padding: 5px 12px; border-radius: var(--radius-capsule);
       pointer-events: none; z-index: 3;
       backdrop-filter: blur(4px);
     }
 
-    /* Carrusel Multi-Imagen sobre fondo blanco para fundirse con fotos limpias */
+    /* Carrusel Multi-Imagen transparente para fundirse con el fondo */
     .campana-carousel {
       width: 100%; height: 100%; position: relative; overflow: hidden;
-      background: #ffffff;
+      background: transparent;
     }
     .campana-carousel-track {
       display: flex; width: 100%; height: 100%;
@@ -570,7 +591,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       flex: 0 0 100%; width: 100%; height: 100%; position: relative; cursor: zoom-in;
       display: flex; align-items: center; justify-content: center;
       padding: 6px;
-      background: #ffffff;
+      background: transparent;
     }
     .campana-carousel-slide img {
       max-width: 100%; max-height: 100%; width: auto; height: auto;
@@ -582,7 +603,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .carousel-counter {
       position: absolute; top: 12px; right: 12px; z-index: 4;
-      background: rgba(28, 8, 16, 0.85); color: #ffffff;
+      background: rgba(28, 8, 16, 0.88); color: #ffffff;
       font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
       padding: 4px 10px; border-radius: var(--radius-capsule);
       backdrop-filter: blur(4px); pointer-events: none;
@@ -590,7 +611,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     .carousel-arrow {
       position: absolute; top: 50%; transform: translateY(-50%); z-index: 4;
       width: 36px; height: 36px; border-radius: 50%;
-      background: rgba(28, 8, 16, 0.82); color: #ffffff;
+      background: rgba(28, 8, 16, 0.85); color: #ffffff;
       border: 1.5px solid rgba(255, 255, 255, 0.4);
       display: flex; align-items: center; justify-content: center;
       cursor: pointer; transition: all 0.25s ease;
@@ -605,7 +626,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     .carousel-dots {
       position: absolute; bottom: 12px; left: 14px; z-index: 4;
       display: flex; align-items: center; gap: 6px;
-      background: rgba(28, 8, 16, 0.78);
+      background: rgba(28, 8, 16, 0.82);
       padding: 6px 10px; border-radius: var(--radius-capsule);
       backdrop-filter: blur(4px);
     }
@@ -619,24 +640,29 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
 
     .portafolio-desc {
-      font-size: 0.95rem; color: #523b43; line-height: 1.65;
+      font-size: 0.95rem; color: #dec7cf; line-height: 1.65;
     }
 
     /* ==========================================
-       5. BLOQUE CTA / CONTACTO
+       5. BLOQUE CTA / CONTACTO (SEGUNDO TONO OSCURO ALTERNADO)
        ========================================== */
+    #contacto {
+      background: linear-gradient(135deg, #2b0815 0%, #1c070f 100%);
+      border-bottom: 1px solid rgba(230, 115, 153, 0.14);
+    }
+
     .cta-card {
-      background: #ffffff;
+      background: var(--surface-card-darker);
       border-radius: var(--radius-card);
       padding: 60px 40px;
       max-width: 780px; margin: 0 auto;
       text-align: center;
-      box-shadow: 0 20px 50px rgba(109, 12, 46, 0.12);
-      border: 2px solid rgba(109, 12, 46, 0.2);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+      border: 2px solid rgba(230, 115, 153, 0.28);
     }
     .cta-card h2 {
-      font-size: clamp(2rem, 4vw, 2.7rem);
-      color: var(--color-acento);
+      font-size: clamp(1.75rem, 3.6vw, 2.5rem);
+      color: #f38bb0;
       margin-bottom: 30px;
     }
 
@@ -647,23 +673,23 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       border-radius: 50%;
       padding: 6px;
       background: linear-gradient(135deg, #6d0c2e, #a81a4d, #cf346a);
-      box-shadow: 0 0 0 8px rgba(109, 12, 46, 0.13), 0 12px 25px rgba(109, 12, 46, 0.28);
+      box-shadow: 0 0 0 8px rgba(179, 29, 82, 0.18), 0 12px 25px rgba(0, 0, 0, 0.5);
       transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
     }
     .cta-avatar-wrapper:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 0 12px rgba(179, 29, 82, 0.22), 0 15px 35px rgba(109, 12, 46, 0.45);
+      box-shadow: 0 0 0 12px rgba(230, 115, 153, 0.25), 0 15px 35px rgba(179, 29, 82, 0.5);
     }
     .cta-avatar-wrapper img {
       width: 100%; height: 100%; object-fit: cover;
-      border-radius: 50%; border: 4px solid #ffffff; display: block;
+      border-radius: 50%; border: 4px solid #17060c; display: block;
     }
 
     .cta-name {
-      font-size: 1.4rem; font-weight: 800; color: var(--color-acento2); margin-bottom: 4px;
+      font-size: 1.4rem; font-weight: 800; color: #ffffff; margin-bottom: 4px;
     }
     .cta-role {
-      font-family: var(--font-mono); font-size: 0.85rem; color: #664c55;
+      font-family: var(--font-mono); font-size: 0.85rem; color: #e67399;
       font-weight: 700; margin-bottom: 26px;
     }
 
@@ -673,17 +699,18 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
     .cta-social-icon {
       width: 50px; height: 50px; border-radius: 50%;
-      background: #fdf2f6;
-      color: var(--color-acento);
-      border: 2px solid rgba(109, 12, 46, 0.22);
+      background: rgba(179, 29, 82, 0.2);
+      color: #f38bb0;
+      border: 2px solid rgba(230, 115, 153, 0.35);
       display: flex; align-items: center; justify-content: center;
       text-decoration: none;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     .cta-social-icon:hover {
       background: linear-gradient(135deg, #6d0c2e, #a81a4d); color: #ffffff;
+      border-color: #ffffff;
       transform: scale(1.15);
-      box-shadow: 0 0 18px rgba(109, 12, 46, 0.45);
+      box-shadow: 0 0 18px rgba(179, 29, 82, 0.55);
     }
     .cta-social-icon svg { width: 22px; height: 22px; }
 
@@ -707,7 +734,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
 
     .cta-desc {
       max-width: 580px; margin: 0 auto;
-      font-size: 0.98rem; color: #523b43; line-height: 1.7;
+      font-size: 0.98rem; color: #dec7cf; line-height: 1.7;
     }
 
     /* ==========================================
@@ -805,6 +832,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #110408;
     }
     .footer-logo-link {
       display: inline-flex;
@@ -885,9 +913,9 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
         width: 100%;
         padding: 10px 16px;
         border-radius: var(--radius-capsule);
-        background: #fdf2f6;
-        color: var(--color-acento2);
-        border: 1.5px solid rgba(109, 12, 46, 0.25);
+        background: rgba(179, 29, 82, 0.22);
+        color: #ffffff;
+        border: 1.5px solid rgba(230, 115, 153, 0.38);
         font-family: var(--font-mono);
         font-size: 0.8rem;
         font-weight: 700;
@@ -897,7 +925,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       .short-expand-btn svg {
         width: 16px;
         height: 16px;
-        color: var(--color-acento);
+        color: #f38bb0;
       }
       .short-expand-btn:active {
         background: var(--color-acento);
@@ -1045,7 +1073,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     </div>
   </section>
 
-  <!-- 4. BLOQUE PORTAFOLIO (VIDEOS ALFABÉTICOS -> IMAGEN/ESTRATEGIA ALFABÉTICOS + CARRUSEL 1:1 BLANCO) -->
+  <!-- 4. BLOQUE PORTAFOLIO (VIDEOS ALFABÉTICOS -> IMAGEN/ESTRATEGIA ALFABÉTICOS + CARRUSEL TRANSPARENTE) -->
   <section id="portafolio" class="seccion fondo-default">
     <div class="contenedor">
       <div class="seccion-header">
