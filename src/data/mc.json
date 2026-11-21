@@ -1,0 +1,99 @@
+{
+  "seo": {
+    "title": "yaga.haus | Tu Campaña en Movimiento Ciudadano",
+    "description": "Producción audiovisual, estrategia de contenidos y activismo digital de alto impacto para precampañas y campañas de Movimiento Ciudadano.",
+    "ogImage": "/assets/images/mc/hero-campana.jpg"
+  },
+  "hero": {
+    "tag": "PRODUCCIÓN DE CONTENIDOS POLÍTICO ELECTORALES",
+    "title": "El futuro es naranja y se construye contenidos estratégicos.",
+    "description": "Creamos productos digitales imparables. Spots, identidades visuales y estrategias para conectar con su comunidad meta.",
+    "buttonText": "Cénteme de su proyecto",
+    "buttonLink": "#contacto",
+    "image": "/assets/images/mc/hero-campana.jpg",
+    "imageAlt": "Equipo de producción audiovisual en campaña política"
+  },
+  "portafolio": {
+    "title": "¿Cómo lo hacemos?",
+    "subtitle": "Material estratégico ejecutado para precampañas, posicionamiento municipal y conexión ciudadana.",
+    "items": [
+      {
+        "tipo": "video",
+        "titulo": "Anuncio: HugoFest 2026",
+        "cliente": "Hugo Álvarez",
+        "youtubeId": "biwoF7BYXk8",
+        "descripcion": "Estrategia 100% ciudadana diseñada para captar y organizar simpatizantes civiles en Salina Cruz mediante activación comunitaria."
+      },
+      {
+        "tipo": "video",
+        "titulo": "Anuncio: ¡Esta navidad regala algo nuevo!",
+        "cliente": "Vania Talamantes",
+        "youtubeId": "DQJj3W5lhIs",
+        "descripcion": "Video de marca partido enfocado en el posicionamiento institucional de imagen como lideresa del Comité Municipal."
+      },
+      {
+        "tipo": "imagen",
+        "titulo": "Gráficos de Campaña & Posicionamiento",
+        "imagenes": [
+          "/assets/images/mc/ejemplos/campana-1.jpg",
+          "/assets/images/mc/ejemplos/campana-2.jpg",
+          "/assets/images/mc/ejemplos/campana-3.jpg",
+          "/assets/images/mc/ejemplos/campana-4.jpg",
+          "/assets/images/mc/ejemplos/campana-5.jpg"
+        ],
+        "descripcion": "Piezas gráficas de campaña con llamado al voto, cápsulas de presentación ('Sobre mí / Conóceme') y conmemoración del 8M."
+      },
+      {
+        "tipo": "video",
+        "titulo": "Anuncio: ¡El Movimiento de la Alegría!",
+        "cliente": "Vania Talamantes",
+        "youtubeId": "n1MVTh3kguI",
+        "descripcion": "Video de marca partido y posicionamiento como lideresa del Comité Municipal; réplica de campaña nacional en territorio local avalada por dirigencias."
+      },
+      {
+        "tipo": "video",
+        "titulo": "Historia de vida: Pepe Maldonado",
+        "cliente": "Pepe Maldonado",
+        "youtubeId": "Id_i8HoyBFQ",
+        "descripcion": "Video de semblanza personal y cercanía humana, filmado cinemáticamente por Juan Pablo Villalobos."
+      },
+      {
+        "tipo": "imagen",
+        "titulo": "Identidad Territorial y Puntos Icónicos",
+        "imagenes": [
+          "/assets/images/mc/ejemplos/localidad-1.jpg",
+          "/assets/images/mc/ejemplos/localidad-2.jpg",
+          "/assets/images/mc/ejemplos/localidad-3.jpg",
+          "/assets/images/mc/ejemplos/localidad-4.jpg",
+          "/assets/images/mc/ejemplos/localidad-5.jpg",
+          "/assets/images/mc/ejemplos/localidad-6.jpg"
+        ],
+        "descripcion": "Gráficos institucionales sin candidato protagonizando espacios emblemáticos y lugares icónicos de la localidad con llamados al partido."
+      },
+      {
+        "tipo": "imagen",
+        "titulo": "Fotografía Oficial de Perfil y Candidatura",
+        "imagenes": [
+          "/assets/images/mc/ejemplos/perfil-1.jpg",
+          "/assets/images/mc/ejemplos/perfil-2.jpg",
+          "/assets/images/mc/ejemplos/perfil-3.jpg",
+          "/assets/images/mc/ejemplos/perfil-4.jpg",
+          "/assets/images/mc/ejemplos/perfil-5.jpg"
+        ],
+        "descripcion": "Sesiones fotográficas de retrato político diseñadas para proyectar cercanía, liderazgo y frescura en redes y espectaculares."
+      }
+    ]
+  },
+  "cta": {
+    "title": "¡Hgamos un plan!",
+    "foto": "/assets/images/mc/perfil-director.jpg",
+    "nombre": "César Leyto",
+    "cargo": "Diseñador y Director Creativo | yaga.haus",
+    "facebook": "https://www.facebook.com/cesarleyto",
+    "instagram": "https://www.instagram.com/cesarleyto",
+    "correo": "hola@yaga.haus",
+    "whatsappNumero": "971 103 5995",
+    "whatsappLink": "https://wa.me/5219711035995?text=Hola%20yaga.haus,%20me%20interesa%20cotizar%20servicios%20de%20campa%C3%B1a%20para%20MC.",
+    "descripcion": "Diseñamos paquetes a la medida para precandidaturas y candidaturas locales en el Istmo y zonas aledañas."
+  }
+}
