@@ -521,6 +521,11 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       width: 100%; height: 100%; border: none; display: block;
     }
 
+    /* Botón de pantalla completa para Shorts en móvil */
+    .short-expand-btn {
+      display: none;
+    }
+
     .portafolio-img-trigger {
       width: 100%; height: 100%; cursor: zoom-in; position: relative;
       display: flex; align-items: center; justify-content: center;
@@ -698,7 +703,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     }
 
     /* ==========================================
-       MODAL LIGHTBOX PARA FOTOS DEL PORTAFOLIO (TAMAÑO REAL)
+       MODAL LIGHTBOX PARA FOTOS Y VIDEOS SHORTS
        ========================================== */
     .modal-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -715,6 +720,14 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       max-width: 960px; width: 100%;
       transform: scale(0.92); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
+    .modal-content.is-video-mode {
+      max-width: 460px;
+      background: #181818;
+      padding: 14px;
+    }
+    .modal-content.is-video-mode p {
+      color: #ffffff;
+    }
     .modal-overlay.active .modal-content { transform: scale(1); }
     .modal-img-stage {
       position: relative; display: flex; align-items: center; justify-content: center;
@@ -723,6 +736,28 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     .modal-content img {
       max-width: 100%; max-height: 78vh; width: auto; height: auto;
       border-radius: 14px; object-fit: contain; margin-bottom: 14px; display: block;
+    }
+    .modal-video-stage {
+      display: none;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      max-height: 78vh;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000000;
+      margin-bottom: 12px;
+    }
+    .modal-content.is-video-mode .modal-img-stage {
+      display: none;
+    }
+    .modal-content.is-video-mode .modal-video-stage {
+      display: block;
+    }
+    .modal-video-stage iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
     .modal-nav-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -829,6 +864,41 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       }
       .subservicios-grid { grid-template-columns: 1fr; }
       .portafolio-grid { grid-template-columns: 1fr; }
+
+      /* Shorts en móvil: proporción vertical nativa + botón de pantalla completa */
+      .portafolio-media.media-video.is-short {
+        aspect-ratio: 9 / 15;
+      }
+      .short-expand-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+        padding: 10px 16px;
+        border-radius: var(--radius-capsule);
+        background: var(--default-color-similar);
+        color: var(--color-acento2);
+        border: 1.5px solid rgba(255, 128, 0, 0.35);
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+      .short-expand-btn svg {
+        width: 16px;
+        height: 16px;
+        color: var(--color-acento);
+      }
+      .short-expand-btn:active {
+        background: var(--color-acento);
+        color: #ffffff;
+      }
+      .short-expand-btn:active svg {
+        color: #ffffff;
+      }
+
       .cta-card { padding: 45px 22px; }
     }
   </style>
@@ -996,6 +1066,7 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
           const images = getItemImages(item);
           const hasMultipleImages = images.length > 1;
           const filterGroup = item.tipo === 'video' ? 'video' : 'imagen-estrategia';
+          const isShort = Boolean(item.esShort);
 
           return (
             <article class="portafolio-card" data-category={filterGroup}>
@@ -1019,13 +1090,13 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
                 </div>
               </div>
 
-              <div class={`portafolio-media ${item.tipo === 'video' ? 'media-video' : 'media-gallery'}`}>
+              <div class={`portafolio-media ${item.tipo === 'video' ? `media-video ${isShort ? 'is-short' : ''}` : 'media-gallery'}`}>
                 {item.tipo === 'video' && item.youtubeId ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${item.youtubeId}`}
                     title={item.titulo}
                     loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
                     allowfullscreen
                   ></iframe>
                 ) : hasMultipleImages ? (
@@ -1076,6 +1147,23 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
                   </div>
                 )}
               </div>
+
+              {item.tipo === 'video' && isShort && item.youtubeId && (
+                <button
+                  type="button"
+                  class="short-expand-btn"
+                  data-youtube-id={item.youtubeId}
+                  data-title={item.titulo}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <polyline points="9 21 3 21 3 15"></polyline>
+                    <line x1="21" y1="3" x2="14" y2="10"></line>
+                    <line x1="3" y1="21" x2="10" y2="14"></line>
+                  </svg>
+                  <span>Ver en pantalla completa</span>
+                </button>
+              )}
 
               {item.descripcion && (
                 <p class="portafolio-desc">{item.descripcion}</p>
@@ -1132,9 +1220,9 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     </div>
   </section>
 
-  <!-- MODAL LIGHTBOX PARA AMPLIAR IMÁGENES DEL PORTAFOLIO A TAMAÑO REAL -->
+  <!-- MODAL LIGHTBOX PARA AMPLIAR IMÁGENES Y VIDEOS SHORTS -->
   <div id="portfolioModal" class="modal-overlay">
-    <div class="modal-content">
+    <div class="modal-content" id="modalContent">
       <button class="modal-close" aria-label="Cerrar vista previa">&times;</button>
       <div class="modal-img-stage">
         <button type="button" class="modal-nav-btn prev" id="modalPrevBtn" aria-label="Anterior">
@@ -1144,6 +1232,15 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
         <button type="button" class="modal-nav-btn next" id="modalNextBtn" aria-label="Siguiente">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
+      </div>
+      <div class="modal-video-stage">
+        <iframe
+          id="modalVideoFrame"
+          src=""
+          title="Video en pantalla completa"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowfullscreen
+        ></iframe>
       </div>
       <p id="modalTitle"></p>
       <div id="modalCounter" class="modal-counter"></div>
@@ -1244,9 +1341,11 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
       });
     });
 
-    // 4. Lightbox Modal con navegación entre fotos a tamaño real
+    // 4. Lightbox Modal con navegación entre fotos y vista vertical para Shorts
     const modal = document.getElementById('portfolioModal');
+    const modalContent = document.getElementById('modalContent');
     const modalImg = document.getElementById('modalImage') as HTMLImageElement;
+    const modalVideoFrame = document.getElementById('modalVideoFrame') as HTMLIFrameElement;
     const modalTitle = document.getElementById('modalTitle');
     const modalCounter = document.getElementById('modalCounter');
     const modalPrevBtn = document.getElementById('modalPrevBtn');
@@ -1268,10 +1367,23 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     };
 
     const openLightbox = (images: string[], startIndex: number, title: string) => {
+      modalContent?.classList.remove('is-video-mode');
+      if (modalVideoFrame) modalVideoFrame.src = '';
       currentModalImages = images;
       currentModalIndex = startIndex;
       if (modalTitle) modalTitle.textContent = title;
       renderModalImage();
+      modal?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const openVideoLightbox = (youtubeId: string, title: string) => {
+      modalContent?.classList.add('is-video-mode');
+      if (modalVideoFrame) {
+        modalVideoFrame.src = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`;
+      }
+      if (modalTitle) modalTitle.textContent = title;
+      if (modalCounter) modalCounter.textContent = '';
       modal?.classList.add('active');
       document.body.style.overflow = 'hidden';
     };
@@ -1290,6 +1402,8 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
 
     const closeModal = () => {
       modal?.classList.remove('active');
+      modalContent?.classList.remove('is-video-mode');
+      if (modalVideoFrame) modalVideoFrame.src = '';
       document.body.style.overflow = 'auto';
     };
 
@@ -1300,13 +1414,15 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
     document.addEventListener('keydown', (e) => {
       if (!modal?.classList.contains('active')) return;
       if (e.key === 'Escape') closeModal();
-      if (e.key === 'ArrowLeft' && currentModalImages.length > 1) {
-        currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
-        renderModalImage();
-      }
-      if (e.key === 'ArrowRight' && currentModalImages.length > 1) {
-        currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
-        renderModalImage();
+      if (!modalContent?.classList.contains('is-video-mode') && currentModalImages.length > 1) {
+        if (e.key === 'ArrowLeft') {
+          currentModalIndex = (currentModalIndex - 1 + currentModalImages.length) % currentModalImages.length;
+          renderModalImage();
+        }
+        if (e.key === 'ArrowRight') {
+          currentModalIndex = (currentModalIndex + 1) % currentModalImages.length;
+          renderModalImage();
+        }
       }
     });
 
@@ -1316,6 +1432,15 @@ const sortedPortfolioItems = [...content.portafolio.items].sort((a, b) => {
         const images = JSON.parse(trigger.getAttribute('data-images') || '[]');
         const title = trigger.getAttribute('data-title') || '';
         openLightbox(images, 0, title);
+      });
+    });
+
+    // Disparadores para ampliar Shorts en móvil
+    document.querySelectorAll('.short-expand-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const youtubeId = btn.getAttribute('data-youtube-id') || '';
+        const title = btn.getAttribute('data-title') || '';
+        if (youtubeId) openVideoLightbox(youtubeId, title);
       });
     });
 
