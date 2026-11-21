@@ -66,6 +66,13 @@
         "descripcion": "Video de semblanza personal y cercanía humana, filmado cinemáticamente por Juan Pablo Villalobos."
       },
       {
+        "tipo": "video",
+        "titulo": "Video Jingle: ¡Movimiento Naranja! 🍊",
+        "cliente": "Pepe Maldonado",
+        "youtubeId": "6I1HZ_fiFnE",
+        "descripcion": "Recopilación de los mejores momentos de la campaña orgánica (fuera de spots) al ritmo del jingle divertido de campaña; muestra del contenido cercano que construimos en territorio."
+      },
+      {
         "tipo": "imagen",
         "titulo": "Identidad Territorial y Puntos Icónicos",
         "imagenes": [
