@@ -33,6 +33,20 @@
         "descripcion": "Video de marca partido enfocado en el posicionamiento institucional de imagen como lideresa del Comité Municipal."
       },
       {
+        "tipo": "video",
+        "titulo": "Anuncio: ¡Hola, soy Aurora Cobon! #LGBTTTIQ+ 🏳️‍🌈🏳️‍⚧️",
+        "cliente": "Aurora Cobon",
+        "youtubeId": "t9Ym3YvZEVM",
+        "descripcion": "Spot de campaña por el Distrito 18 con cabecera en Tehuantepec; posicionamiento de activismo y representación por autoadscripción LGBT+."
+      },
+      {
+        "tipo": "video",
+        "titulo": "Anuncio: ¡Vamos por un Espinal Nuevo!",
+        "cliente": "Jorge Clemente Villalobos",
+        "youtubeId": "jzJnoienVK8",
+        "descripcion": "Spot de campaña a la presidencia municipal por El Espinal, Oaxaca, enfocado en cercanía ciudadana y renovación local."
+      },
+      {
         "tipo": "imagen",
         "titulo": "Gráficos de Campaña & Posicionamiento",
         "imagenes": [
@@ -43,14 +57,6 @@
           "/assets/images/mc/ejemplos/campana-5.jpg"
         ],
         "descripcion": "Piezas gráficas de campaña con llamado al voto, cápsulas de presentación ('Sobre mí / Conóceme') y conmemoración del 8M."
-      },
-      {
-        "tipo": "video",
-        "esShort": true,
-        "titulo": "Anuncio: ¡El Movimiento de la Alegría!",
-        "cliente": "Vania Talamantes",
-        "youtubeId": "n1MVTh3kguI",
-        "descripcion": "Video de marca partido y posicionamiento como lideresa del Comité Municipal; réplica de campaña nacional en territorio local avalada por dirigencias."
       },
       {
         "tipo": "video",
@@ -87,7 +93,7 @@
     ]
   },
   "cta": {
-    "title": "¡Hgamos un plan!",
+    "title": "¡Hagamos un plan!",
     "foto": "/assets/images/mc/perfil-director.jpg",
     "nombre": "César Leyto",
     "cargo": "Diseñador y Director Creativo | yaga.haus",
