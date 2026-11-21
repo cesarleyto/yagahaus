@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "title": "yaga.haus | Contenidos para tu campaña política",
+    "description": "Producción audiovisual, comunicación política, estrategia de contenidos y activismo digital de alto impacto para precampañas, campañas y gestión legislativa.",
+    "ogImage": "/assets/images/politica/hero-campana.jpg"
+  },
+  "hero": {
+    "tag": "PRODUCCIÓN DE CONTENIDOS POLÍTICO ELECTORALES",
+    "title": "Una campaña se gana con estrategia y territorio.",
+    "description": "Creamos productos digitales imparables. Spots, identidades visuales, narrativas territoriales y estrategias para conectar con su comunidad meta.",
+    "buttonText": "Hablemos de su proyecto",
+    "buttonLink": "#contacto",
+    "image": "/assets/images/politica/hero-campana.jpg",
+    "imageAlt": "Equipo de producción audiovisual en campaña y gestión política"
+  },
+  "portafolio": {
+    "title": "¿Cómo lo hacemos?",
+    "subtitle": "Material estratégico ejecutado para campañas, informes legislativos, posicionamiento territorial y cercanía ciudadana.",
+    "items": [
+      {
+        "tipo": "video",
+        "esShort": false,
+        "titulo": "Trailer: Proyecto de Declaratoria de Zona de Monumentos Históricos en Tehuantepec",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "WhOUfWl0CvU",
+        "descripcion": "Pieza audiovisual ilustrativa que proyecta la visión de futuro para Santo Domingo Tehuantepec: la iniciativa legislativa para declarar al municipio como Zona de Monumentos Históricos."
+      },
+      {
+        "tipo": "video",
+        "esShort": false,
+        "titulo": "Conoce a la Diputada 19",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "WKBCDxoTokY",
+        "descripcion": "Cápsula de presentación biográfica y vocacional de la Diputada María Francisca Antonio Santiago, maestra de corazón y presidenta de la Comisión Permanente de Educación, Ciencia, Tecnología e Innovación en la LXVI Legislatura de Oaxaca."
+      },
+      {
+        "tipo": "video",
+        "esShort": true,
+        "titulo": "Videoblog: Visita al Guiengola",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "WR5ukeY6aBI",
+        "descripcion": "Contenido vertical de recorrido territorial dentro de la #RutaLegislativa en la zona arqueológica del Guiengola, enfocada en preservar y proteger el patrimonio histórico, cultural y natural del Istmo para las futuras generaciones."
+      },
+      {
+        "tipo": "video",
+        "esShort": false,
+        "titulo": "Testimonial: Los Mártires de Chihuitán",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "LI3YyGxkcHg",
+        "descripcion": "Documental testimonial extendido sobre los hechos históricos del 17 de marzo de 1929 en Chihuitán, respaldado con la investigación y memoria oral del Dr. Gaspar Gómez Rousell y el Lic. René Rueda Ruiz."
+      },
+      {
+        "tipo": "video",
+        "esShort": false,
+        "titulo": "Primer Informe Legislativo",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "r70fXHGLj-A",
+        "descripcion": "Producción integral de 7 minutos que sintetiza resultados legislativos mediante motion graphics dinámicos, testimonios reales de la ciudadanía asistente y los momentos más emotivos de la rendición de cuentas."
+      },
+      {
+        "tipo": "video",
+        "esShort": false,
+        "titulo": "Anuncio: ¡Gracias, Distrito 19! Nuestro compromiso es con el Istmo",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "SvW8SaJFu3w",
+        "descripcion": "Spot de agradecimiento ciudadano con ritmo ágil, narración emotiva y secuencias B-roll capturadas de forma genuina en recorrido por las comunidades del Distrito 19."
+      },
+      {
+        "tipo": "video",
+        "esShort": true,
+        "titulo": "¡Vamos por la Ratificación de Mandato!",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "0J9AhciF_Mc",
+        "descripcion": "Videocolumna vertical de posicionamiento político y respaldo ciudadano al proyecto de transformación en Oaxaca encabezado por el gobernador Salomón Jara."
+      },
+      {
+        "tipo": "video",
+        "esShort": true,
+        "titulo": "Influencer: Gurú en Zapoteco",
+        "cliente": "María Francisca Antonio Santiago",
+        "youtubeId": "G2HrWA9Sr1k",
+        "descripcion": "Serie de cápsulas verticales diseñadas para conectar orgánicamente con la audiencia del Istmo aprovechando su vocación docente y dominio del zapoteco; una estrategia de identidad cultural que impulsó su reconocimiento popular y fue clave para ganar la elección."
+      },
+      {
+        "tipo": "imagen",
+        "esShort": false,
+        "titulo": "Productos Gráficos",
+        "imagenes": [
+          { "src": "/assets/images/politica/ejemplos/campana-1.jpg" },
+          { "src": "/assets/images/politica/ejemplos/campana-2.jpg" },
+          { "src": "/assets/images/politica/ejemplos/campana-3.jpg" },
+          { "src": "/assets/images/politica/ejemplos/campana-4.jpg" },
+          { "src": "/assets/images/politica/ejemplos/campana-5.jpg" }
+        ]
+      },
+      {
+        "tipo": "imagen",
+        "esShort": false,
+        "titulo": "Fotografía de Perfil",
+        "imagenes": [
+          { "src": "/assets/images/politica/ejemplos/perfil-1.jpg" },
+          { "src": "/assets/images/politica/ejemplos/perfil-2.jpg" },
+          { "src": "/assets/images/politica/ejemplos/perfil-3.jpg" },
+          { "src": "/assets/images/politica/ejemplos/perfil-4.jpg" },
+          { "src": "/assets/images/mc/ejemplos/perfil-1.jpg" },
+          { "src": "/assets/images/mc/ejemplos/perfil-4.jpg" },
+          { "src": "/assets/images/mc/ejemplos/perfil-5.jpg" }
+        ]
+      }
+    ]
+  },
+  "cta": {
+    "title": "¡Hagamos un plan!",
+    "foto": "/assets/images/mc/perfil-director.jpg",
+    "nombre": "César Leyto",
+    "cargo": "Diseñador y Director Creativo",
+    "facebook": "https://www.facebook.com/cesarleyto",
+    "instagram": "https://www.instagram.com/cesarleyto",
+    "correo": "hola@yaga.haus",
+    "whatsappNumero": "971 103 5995",
+    "whatsappLink": "https://wa.me/5219711035995?text=Hola%20yaga.haus,%20me%20interesa%20cotizar%20servicios%20de%20contenidos%20para%20campa%C3%B1a%20pol%C3%ADtica.",
+    "descripcion": "Diseñamos paquetes a la medida para precandidaturas, candidaturas y equipos legislativos en el Istmo y zonas aledañas."
+  }
+}

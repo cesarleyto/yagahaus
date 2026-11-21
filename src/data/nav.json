@@ -3,8 +3,12 @@
   "enlaces": [],
   "botones": [
     {
-      "texto": "¿Aspirante a candidato?",
-      "url": "https://yaga.haus/mc"
+      "texto": "¿Aspirante MC?",
+      "url": "/mc"
+    }
+    ,{
+      "texto": "¿Otro opartido?",
+      "url": "/campanas"
     }
   ]
 }
