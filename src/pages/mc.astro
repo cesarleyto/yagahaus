@@ -3,7 +3,11 @@ import content from '../data/mc.json';
 
 // Helper para normalizar 1 o varias imágenes por entrada del portafolio
 const getItemImages = (item: any): string[] => {
-  if (Array.isArray(item.imagenes) && item.imagenes.length > 0) return item.imagenes;
+  if (Array.isArray(item.imagenes) && item.imagenes.length > 0) {
+    return item.imagenes
+      .map((img: any) => (typeof img === 'string' ? img : img?.src))
+      .filter(Boolean);
+  }
   if (typeof item.imagen === 'string' && item.imagen.trim() !== '') return [item.imagen];
   return [];
 };

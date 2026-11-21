@@ -101,7 +101,92 @@ collections:
           - { label: "Descripción del Blog", name: "description", widget: "text" }
 
   # ==========================================
-  # 2. SISTEMA RELACIONAL (Categorías y Autores)
+  # 2. LANDING CAMPAÑA MC (src/data/mc.json)
+  # ==========================================
+  - name: "campana_mc"
+    label: "🦅 Campaña MC"
+    editor:
+      preview: false
+    files:
+      - label: "Contenido Landing MC"
+        name: "mc"
+        file: "src/data/mc.json"
+        media_folder: "/public/assets/images/mc"
+        public_folder: "/assets/images/mc"
+        fields:
+          - label: "🔍 SEO y Vista Previa (Open Graph)"
+            name: "seo"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Título de la Pestaña", name: "title", widget: "string" }
+              - { label: "Descripción SEO", name: "description", widget: "text" }
+              - { label: "Imagen para Redes Sociales (WhatsApp/FB)", name: "ogImage", widget: "image" }
+
+          - label: "🚀 Portada (Hero)"
+            name: "hero"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Etiqueta Superior (Badge)", name: "tag", widget: "string" }
+              - { label: "Título Principal", name: "title", widget: "string" }
+              - { label: "Descripción", name: "description", widget: "text" }
+              - { label: "Texto del Botón", name: "buttonText", widget: "string" }
+              - { label: "Enlace del Botón", name: "buttonLink", widget: "string", default: "#contacto" }
+              - { label: "Fotografía Principal", name: "image", widget: "image" }
+              - { label: "Texto Alternativo de Imagen (ALT)", name: "imageAlt", widget: "string" }
+
+          - label: "🎬 Portafolio de Campaña"
+            name: "portafolio"
+            widget: "object"
+            fields:
+              - { label: "Título de la Sección", name: "title", widget: "string" }
+              - { label: "Subtítulo", name: "subtitle", widget: "text" }
+              - label: "Proyectos y Piezas"
+                name: "items"
+                widget: "list"
+                summary: "{{fields.titulo}} ({{fields.tipo}})"
+                media_folder: "/public/assets/images/mc/ejemplos"
+                public_folder: "/assets/images/mc/ejemplos"
+                fields:
+                  - label: "Tipo de Pieza"
+                    name: "tipo"
+                    widget: "select"
+                    options:
+                      - { label: "Video (YouTube)", value: "video" }
+                      - { label: "Galería de Imágenes / Gráficos", value: "imagen" }
+                      - { label: "Estrategia", value: "estrategia" }
+                  - { label: "¿Es Video Vertical (YouTube Short)?", name: "esShort", widget: "boolean", default: false, required: false, hint: "Actívalo solo si es un video vertical/Short para adaptarlo en celulares." }
+                  - { label: "Título del Proyecto", name: "titulo", widget: "string" }
+                  - { label: "Cliente / Candidato", name: "cliente", widget: "string", required: false }
+                  - { label: "ID de YouTube (Solo si es Video)", name: "youtubeId", widget: "string", required: false, hint: "Ej: si el link es youtu.be/6I1HZ_fiFnE, escribe solo 6I1HZ_fiFnE" }
+                  - label: "Imágenes / Carrusel (Si es Imagen o Estrategia)"
+                    name: "imagenes"
+                    widget: "list"
+                    required: false
+                    summary: "{{fields.src}}"
+                    fields:
+                      - { label: "Imagen", name: "src", widget: "image" }
+                  - { label: "Descripción del Caso", name: "descripcion", widget: "text", required: false }
+
+          - label: "📞 Bloque de Contacto (CTA)"
+            name: "cta"
+            widget: "object"
+            collapsed: true
+            fields:
+              - { label: "Título del Bloque", name: "title", widget: "string" }
+              - { label: "Foto de Perfil", name: "foto", widget: "image" }
+              - { label: "Nombre", name: "nombre", widget: "string" }
+              - { label: "Cargo / Firma", name: "cargo", widget: "string" }
+              - { label: "URL Facebook", name: "facebook", widget: "string", required: false }
+              - { label: "URL Instagram", name: "instagram", widget: "string", required: false }
+              - { label: "Correo Electrónico", name: "correo", widget: "string", required: false }
+              - { label: "Número de WhatsApp (Visible en el botón)", name: "whatsappNumero", widget: "string", hint: "Ej: 971 103 5995" }
+              - { label: "Enlace Directo wa.me", name: "whatsappLink", widget: "string" }
+              - { label: "Texto de Cierre", name: "descripcion", widget: "text" }
+
+  # ==========================================
+  # 3. SISTEMA RELACIONAL (Categorías y Autores)
   # ==========================================
   - name: "categorias"
     label: "🏷️ Categorías del Blog"
@@ -133,7 +218,7 @@ collections:
           - { label: "URL", name: "url", widget: "string" }
 
   # ==========================================
-  # 3. CONSTRUCTORES DE CONTENIDO (Páginas y Blog)
+  # 4. CONSTRUCTORES DE CONTENIDO (Páginas y Blog)
   # ==========================================
   - name: "paginas"
     label: "📄 Páginas"
